@@ -1,0 +1,2 @@
+class SecuritiesCompany < ApplicationRecord
+end

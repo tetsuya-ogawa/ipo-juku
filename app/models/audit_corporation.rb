@@ -1,0 +1,2 @@
+class AuditCorporation < ApplicationRecord
+end
