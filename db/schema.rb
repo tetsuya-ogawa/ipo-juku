@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_09_07_083719) do
 
   create_table "ipo_infomations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
+    t.string "code", null: false
     t.datetime "listing_date", null: false
     t.integer "public_shares"
     t.integer "sold_shares"
