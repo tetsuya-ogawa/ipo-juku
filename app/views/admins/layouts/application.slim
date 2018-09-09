@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    = javascript_pack_tag 'pc/application'
+    = stylesheet_pack_tag 'pc/application'
+    = yield :javascript_head
+  body
+    header.header
+    main
+      = yield

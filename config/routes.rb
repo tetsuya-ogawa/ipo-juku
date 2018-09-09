@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'top#index'
+
+  namespace :admins, as: :admin, path: :admin do
+    root 'top#index'
+  end
 end
