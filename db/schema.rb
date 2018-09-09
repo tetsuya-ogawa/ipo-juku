@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_07_083719) do
+ActiveRecord::Schema.define(version: 2018_09_09_073119) do
 
   create_table "audit_corporations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_09_07_083719) do
     t.string "president_name"
     t.string "home_page"
     t.string "address"
+    t.string "code", null: false
     t.text "business_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,9 +40,32 @@ ActiveRecord::Schema.define(version: 2018_09_07_083719) do
     t.index ["company_id"], name: "index_company_audit_corporations_on_company_id"
   end
 
-  create_table "ipo_infomations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "company_sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
-    t.string "code", null: false
+    t.datetime "period", null: false
+    t.integer "kind"
+    t.integer "amount_of_sales"
+    t.integer "ordinary_income"
+    t.integer "profit"
+    t.integer "asset"
+    t.decimal "profit_per_stock", precision: 5, scale: 2
+    t.decimal "asset_per_stock", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_sales_on_company_id"
+  end
+
+  create_table "ipo_information_markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "ipo_information_id"
+    t.bigint "market_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ipo_information_id"], name: "index_ipo_information_markets_on_ipo_information_id"
+    t.index ["market_id"], name: "index_ipo_information_markets_on_market_id"
+  end
+
+  create_table "ipo_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "company_id"
     t.datetime "listing_date", null: false
     t.integer "public_shares"
     t.integer "sold_shares"
@@ -58,16 +82,7 @@ ActiveRecord::Schema.define(version: 2018_09_07_083719) do
     t.integer "trading_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_ipo_infomations_on_company_id"
-  end
-
-  create_table "ipo_information_markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "ipo_infomation_id"
-    t.bigint "market_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ipo_infomation_id"], name: "index_ipo_information_markets_on_ipo_infomation_id"
-    t.index ["market_id"], name: "index_ipo_information_markets_on_market_id"
+    t.index ["company_id"], name: "index_ipo_informations_on_company_id"
   end
 
   create_table "markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -106,9 +121,10 @@ ActiveRecord::Schema.define(version: 2018_09_07_083719) do
 
   add_foreign_key "company_audit_corporations", "audit_corporations"
   add_foreign_key "company_audit_corporations", "companies"
-  add_foreign_key "ipo_infomations", "companies"
-  add_foreign_key "ipo_information_markets", "ipo_infomations"
+  add_foreign_key "company_sales", "companies"
+  add_foreign_key "ipo_information_markets", "ipo_informations"
   add_foreign_key "ipo_information_markets", "markets"
+  add_foreign_key "ipo_informations", "companies"
   add_foreign_key "secretaries", "companies"
   add_foreign_key "secretaries", "securities_companies"
   add_foreign_key "shareholders", "companies"

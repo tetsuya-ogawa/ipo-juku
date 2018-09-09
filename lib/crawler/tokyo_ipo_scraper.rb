@@ -87,6 +87,10 @@ module Crawler
     end
 
     def build_sales_data(sales_data)
+      sales_data = sales_data.map do |data|
+        data.delete(',')
+        nil if data == '-'
+      end
       {}.tap do |hash|
         hash[:fiscal_month] = sales_data[0]
         hash[:linking] = { amount_of_sales: sales_data[1], ordinary_income: sales_data[2], profit: sales_data[3], asset: sales_data[4] }
@@ -95,6 +99,9 @@ module Crawler
     end
 
     def build_sales_data_per_stock(sales_data)
+      sales_data = sales_data.map do |data|
+        nil if %w(- -).include?(data)
+      end
       {}.tap do |hash|
         hash[:fiscal_month] = sales_data[0]
         hash[:linking] = { profit_per_stock: sales_data[2], asset_per_stock: sales_data[3] }

@@ -3,6 +3,6 @@ class Admins::CrawlersController < Admins::BaseController
   end
 
   def create
-    CrawlDataImporter.new.exec
+    CrawlDataImporter.new(CrawlDataShaper.new.exec).exec
   end
 end
