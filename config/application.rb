@@ -15,7 +15,8 @@ module IpoJuku
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ja
     config.enable_dependency_loading = true
-    config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('app', 'validators'), Rails.root.join('lib')]
+    config.action_controller.include_all_helpers = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

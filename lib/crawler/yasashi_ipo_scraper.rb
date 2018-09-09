@@ -76,7 +76,7 @@ module Crawler
       end
     end
 
-    def lottery_application_period
+    def lottery_period
       @tables[:ipo_schedule].css('th').each do |content|
         if content.text == '抽選申込期間'
           return nil if content.next.next.text == '未発表'
@@ -85,7 +85,7 @@ module Crawler
       end
     end
 
-    def purchase_application_period
+    def purchase_period
       @tables[:ipo_schedule].css('th').each do |content|
         if content.text == '購入申込期間'
           return nil if content.next.next.text == '未発表'
