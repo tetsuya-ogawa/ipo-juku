@@ -1,7 +1,7 @@
-# require 'open-uri'
-# require 'kconv'
-# require 'nokogiri'
-# require 'uri'
+require 'open-uri'
+require 'kconv'
+require 'uri'
+
 module Crawler
   class IpoCrawler
     attr_reader :html, :doc, :company_urls

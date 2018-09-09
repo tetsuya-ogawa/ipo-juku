@@ -1,25 +1,19 @@
-# require 'open-uri'
-# require 'kconv'
-# require 'nokogiri'
-# require 'uri'
-# require './ipo_crawler'
-# require './tokyo_ipo_scraper'
+require 'open-uri'
+require 'kconv'
+require 'uri'
+
 module Crawler
   class TokyoIpoCrawler < IpoCrawler
+    attr_accessor :scrapers
     def initialize(url: 'http://www.tokyoipo.com/ipo/schedule.php')
       super(url: url)
     end
 
-    def scrape
-      @company_urls.each do |url|
-        tis = TokyoIpoScraper.new(url: url)
-        puts tis.code
-        puts tis.market
-        puts tis.r_f_rate
-        puts tis.trading_unit
-        puts tis.company_data
-        puts tis.sales_data
-        puts '='*35
+    def crawl!
+      @scrapers = [].tap do |array|
+        @company_urls.each do |url|
+          array << TokyoIpoScraper.new(url: url)
+        end
       end
     end
 

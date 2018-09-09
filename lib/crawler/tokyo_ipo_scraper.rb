@@ -1,6 +1,5 @@
-# require 'open-uri'
-# require 'kconv'
-# require 'nokogiri'
+require 'open-uri'
+require 'kconv'
 
 module Crawler
   class TokyoIpoScraper

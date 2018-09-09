@@ -1,6 +1,6 @@
-# require 'open-uri'
-# require 'kconv'
-# require 'nokogiri'
+require 'open-uri'
+require 'kconv'
+
 module Crawler
   class YasashiIpoScraper
     TABLE_HEADINGS = { '基本情報' => :basic_info,
@@ -22,7 +22,7 @@ module Crawler
       @doc.css('h1').text.match(/\d\d+/)&.[](0)
     end
 
-    def def listed_date
+    def listed_date
       @tables[:company].css('.main_data')[5].text
     end
 

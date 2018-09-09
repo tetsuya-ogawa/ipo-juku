@@ -1,28 +1,19 @@
-# require 'open-uri'
-# require 'kconv'
-# require 'nokogiri'
-# require 'uri'
-# require './ipo_crawler'
-# require './yasashi_ipo_scraper'
+require 'open-uri'
+require 'kconv'
+require 'uri'
+
 module Crawler
   class YasashiIpoCrawler < IpoCrawler
+    attr_accessor :scrapers
     def initialize(url: 'https://www.ipokiso.com/company/schedule.html')
       super(url: url)
     end
 
-    def scrape
-      @company_urls.each do |url|
-        yis = YasashiIpoScraper.new(url: url)
-        puts yis.code
-        puts yis.public_shares
-        puts yis.sold_shares
-        puts yis.provisional_condition
-        puts yis.public_offering_price
-        puts yis.lottery_application_period
-        puts yis.purchase_application_period
-        puts yis.shareholders
-        puts yis.secretaries
-        puts '='*40
+    def crawl!
+      @scrapers = [].tap do |array|
+        @company_urls.each do |url|
+          array << YasashiIpoScraper.new(url: url)
+        end
       end
     end
 
