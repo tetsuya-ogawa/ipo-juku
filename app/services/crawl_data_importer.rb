@@ -12,10 +12,10 @@ class CrawlDataImporter
         ipo_info.attributes = param[:ipo_information]
       end.save
       param[:company_sales].each do |sales|
-        CompanySale.find_or_initialize_by(company_id: company.id, kind: :linking, period: sales[:fiscal_month]) do |c_s|
+        CompanySale.find_or_initialize_by(company_id: company.id, kind: :linking, period: Date.new(*sales[:fiscal_month].split('/').map(&:to_i))) do |c_s|
           c_s.attributes = sales[:linking]
         end.save
-        CompanySale.find_or_initialize_by(company_id: company.id, kind: :unit, period: sales[:fiscal_month] ) do |c_s|
+        CompanySale.find_or_initialize_by(company_id: company.id, kind: :unit, period: Date.new(*sales[:fiscal_month].split('/').map(&:to_i))) do |c_s|
           c_s.attributes = sales[:unit]
         end.save
       end

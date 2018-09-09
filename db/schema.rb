@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "establishment_date"
+    t.date "establishment_date"
     t.string "president_name"
     t.string "home_page"
     t.string "address"
@@ -42,14 +42,14 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
 
   create_table "company_sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
-    t.datetime "period", null: false
+    t.date "period", null: false
     t.integer "kind"
     t.integer "amount_of_sales"
     t.integer "ordinary_income"
     t.integer "profit"
     t.integer "asset"
-    t.decimal "profit_per_stock", precision: 5, scale: 2
-    t.decimal "asset_per_stock", precision: 5, scale: 2
+    t.decimal "profit_per_stock", precision: 8, scale: 2
+    t.decimal "asset_per_stock", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_sales_on_company_id"
@@ -66,19 +66,19 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
 
   create_table "ipo_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
-    t.datetime "listing_date", null: false
+    t.date "listing_date", null: false
     t.integer "public_shares"
     t.integer "sold_shares"
     t.integer "winning_shares"
     t.integer "provisional_condition_start"
     t.integer "provisional_condition_end"
     t.integer "public_offering_price"
-    t.datetime "lottery_period_start"
-    t.datetime "lottery_period_end"
-    t.datetime "purchase_period_start"
-    t.datetime "purchase_period_end"
+    t.date "lottery_period_start"
+    t.date "lottery_period_end"
+    t.date "purchase_period_start"
+    t.date "purchase_period_end"
     t.integer "initial_price"
-    t.decimal "r_f_rate", precision: 4, scale: 2
+    t.decimal "r_f_rate", precision: 6, scale: 2
     t.integer "trading_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
