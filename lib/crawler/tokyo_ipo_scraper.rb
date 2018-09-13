@@ -20,6 +20,10 @@ module Crawler
       set_table_with_heading
     end
 
+    def name
+      @doc.css('.ipodatatable .h1_title_ipodata').first.text
+    end
+
     def code
       @tables[:company].css('.main_data')[0].text
     end

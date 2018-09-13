@@ -1,6 +1,7 @@
 class CreateCompanies < ActiveRecord::Migration[5.2]
   def change
     create_table :companies do |t|
+      t.string :name, null: false
       t.date :establishment_date
       t.string :president_name
       t.string :home_page

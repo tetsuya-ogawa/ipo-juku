@@ -2,6 +2,7 @@ class CreateIpoInformations < ActiveRecord::Migration[5.2]
   def change
     create_table :ipo_informations do |t|
       t.references :company, foreign_key: true
+      t.references :market, foreign_key: true
       t.date :listing_date, null: false
       t.integer :public_shares
       t.integer :sold_shares

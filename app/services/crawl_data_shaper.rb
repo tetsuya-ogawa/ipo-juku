@@ -21,6 +21,9 @@ class CrawlDataShaper
      {}.tap do |hash|
       @tokyo_ipo_crawler.scrapers.each do |scraper|
         yasashi_ipo_scraper = @yasashi_ipo_crawler.scrapers.select { |y_s| y_s.code == scraper.code }&.[](0)
+        if yasashi_ipo_scraper.nil?
+          next
+        end
         hash[scraper.code] = build_attribute({ tokyo_ipo: scraper, yasashi_ipo: yasashi_ipo_scraper })
       end
     end
@@ -34,7 +37,8 @@ class CrawlDataShaper
   end
 
   def company_attribute(scrapers_with_site)
-    { code: scrapers_with_site[:tokyo_ipo].code,
+    { name: scrapers_with_site[:tokyo_ipo].name,
+      code: scrapers_with_site[:tokyo_ipo].code,
       establishment_date: scrapers_with_site[:tokyo_ipo].company_data[:date],
       president_name: scrapers_with_site[:tokyo_ipo].company_data[:representative],
       home_page: scrapers_with_site[:tokyo_ipo].company_data[:home_page],

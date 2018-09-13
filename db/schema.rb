@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.date "establishment_date"
     t.string "president_name"
     t.string "home_page"
@@ -55,17 +56,9 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.index ["company_id"], name: "index_company_sales_on_company_id"
   end
 
-  create_table "ipo_information_markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "ipo_information_id"
-    t.bigint "market_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ipo_information_id"], name: "index_ipo_information_markets_on_ipo_information_id"
-    t.index ["market_id"], name: "index_ipo_information_markets_on_market_id"
-  end
-
   create_table "ipo_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
+    t.bigint "market_id"
     t.date "listing_date", null: false
     t.integer "public_shares"
     t.integer "sold_shares"
@@ -83,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_ipo_informations_on_company_id"
+    t.index ["market_id"], name: "index_ipo_informations_on_market_id"
   end
 
   create_table "markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -95,7 +89,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
   create_table "secretaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
     t.bigint "securities_company_id"
-    t.decimal "rate", precision: 4, scale: 2, null: false
+    t.decimal "rate", precision: 4, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id", "securities_company_id"], name: "unique_company_id_securities_company_id", unique: true
@@ -122,9 +116,8 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
   add_foreign_key "company_audit_corporations", "audit_corporations"
   add_foreign_key "company_audit_corporations", "companies"
   add_foreign_key "company_sales", "companies"
-  add_foreign_key "ipo_information_markets", "ipo_informations"
-  add_foreign_key "ipo_information_markets", "markets"
   add_foreign_key "ipo_informations", "companies"
+  add_foreign_key "ipo_informations", "markets"
   add_foreign_key "secretaries", "companies"
   add_foreign_key "secretaries", "securities_companies"
   add_foreign_key "shareholders", "companies"
