@@ -1,0 +1,47 @@
+.c-ipoInfo {
+  background-color: $white;
+  padding: 5px;
+
+  .c-ipoInfo_header {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .c-ipoInfo_body {
+    display: flex;
+
+    .c-ipoInfo_bodyLeft {
+      width: 65%;
+      padding: 175px 0;
+      background-color: $main-2-color;
+    }
+
+    .c-ipoInfo_bodyRight {
+      width: 35%;
+      padding: 0 5px;
+    }
+  }
+
+  .c-ipoInfo_table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    tr {
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      width: 40%;
+      padding: 10px;
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+    td {
+      text-align: right;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.l-footer {
+  background-color: $main-color;
+  color: $base-color;
+
+  .l-footer_block {
+    height: 100px;
+  }
+
+  .l-footer_block--under {
+    padding: 10px 0;
+    background-color: $main-2-color;
+    text-align: center;
+    font-weight: bold;
+  }
+}

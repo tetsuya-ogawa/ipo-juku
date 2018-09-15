@@ -1,0 +1,36 @@
+- @companies.each do |company|
+  .c-ipoInfo.u-mB20.u-shadow
+    .c-ipoInfo_header
+      h3.u-m0 = "#{company.name} 【#{company.code}】"
+      = company.ipo_information.market.name
+    .c-ipoInfo_body
+      .c-ipoInfo_bodyLeft
+        .c-ipoCalender
+      .c-ipoInfo_bodyRight
+        table.c-ipoInfo_table
+          tr
+            th 公開価格
+            td = company.ipo_information.public_offering_price
+          tr
+            th 最低価格
+            td = company.ipo_information.public_shares
+          tr
+            th 公開株数
+            td = company.ipo_information.public_shares
+          tr
+            th 主幹事
+            td SBI証券
+
+
+
+- content_for :aside
+  p
+
+/一覧表示内容
+/企業名
+/上場市場
+/スケジュール（カレンダー）
+/仮条件(公開日) or 公開価格
+/最低価格
+/公開株数
+/主幹事

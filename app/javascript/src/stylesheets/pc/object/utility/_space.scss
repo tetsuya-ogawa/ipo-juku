@@ -1,0 +1,131 @@
+.u-mC {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.u-m0 {
+  margin: 0;
+}
+
+.u-m0a {
+  margin: 0 auto;
+}
+
+@for $value from 0 to 20 {
+  .u-m#{$value * 5} {
+    margin: 5 * $value + px;
+  }
+}
+
+/* Top Margin */
+
+@for $value from 0 to 20 {
+  .u-mT#{$value * 5} {
+    margin-top: 5 * $value + px;
+  }
+}
+
+/* Right Margin */
+
+@for $value from 0 to 20 {
+  .u-mR#{$value * 5} {
+    margin-right: 5 * $value + px;
+  }
+}
+
+/* Bottom Margin */
+
+@for $value from 0 to 20 {
+  .u-mB#{$value * 5} {
+    margin-bottom: 5 * $value + px;
+  }
+}
+
+/* Left Margin */
+
+@for $value from 0 to 20 {
+  .u-mL#{$value * 5} {
+    margin-left: 5 * $value + px;
+  }
+}
+
+/* X Margin */
+
+@for $value from 0 to 20 {
+  .u-mX#{$value * 5} {
+    margin-right: 5 * $value + px;
+    margin-left: 5 * $value + px;
+  }
+}
+
+/* Y Margin */
+
+@for $value from 0 to 20 {
+  .u-mY#{$value * 5} {
+    margin-top: 5 * $value + px;
+    margin-bottom: 5 * $value + px;
+  }
+}
+
+
+/* Padding */
+
+.u-p0 {
+  padding: 0 ;
+}
+
+@for $value from 0 to 20 {
+  .u-p#{$value * 5} {
+    padding: 5 * $value + px;
+  }
+}
+
+/* Top Padding */
+
+@for $value from 0 to 20 {
+  .u-pT#{$value * 5} {
+    padding-top: 5 * $value + px;
+  }
+}
+
+/* Right Padding */
+
+@for $value from 0 to 20 {
+  .u-pR#{$value * 5} {
+    padding-right: 5 * $value + px;
+  }
+}
+
+/* Bottom Padding */
+
+@for $value from 0 to 20 {
+  .u-pB#{$value * 5} {
+    padding-bottom: 5 * $value + px;
+  }
+}
+
+/* Left Padding */
+
+@for $value from 0 to 20 {
+  .u-pL#{$value * 5} {
+    padding-left: 5 * $value + px;
+  }
+}
+
+/* X Padding */
+
+@for $value from 0 to 20 {
+  .u-pX#{$value * 5} {
+    padding-right: 5 * $value + px;
+    padding-left: 5 * $value + px;
+  }
+}
+
+/* Y Padding */
+
+@for $value from 0 to 20 {
+  .u-pY#{$value * 5} {
+    padding-top: 5 * $value + px;
+    padding-bottom: 5 * $value + px;
+  }
+}

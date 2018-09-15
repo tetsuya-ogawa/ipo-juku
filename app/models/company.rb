@@ -8,4 +8,8 @@ class Company < ApplicationRecord
   has_many :securities_companies, through: :secretaries
   validates :name, presence: true
   validates :code, presence: true
+
+  scope :order_by_listed, lambda {
+    joins(:ipo_information).order('ipo_informations.listing_date')
+  }
 end
