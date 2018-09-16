@@ -10,6 +10,6 @@ class Company < ApplicationRecord
   validates :code, presence: true
 
   scope :order_by_listed, lambda {
-    joins(:ipo_information).order('ipo_informations.listing_date')
+    joins(:ipo_information).order('ipo_informations.listing_date desc')
   }
 end

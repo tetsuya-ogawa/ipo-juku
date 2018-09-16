@@ -1,0 +1,45 @@
+.c-companyIpoCalender {
+  .c-companyIpoCalender_header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $main-2-color;
+    color: white;
+    font-weight: bold;
+
+    .c-companyIpoCalender_header-prev,
+    .c-companyIpoCalender_header-next {
+      cursor: pointer;
+      padding: 0 15px;
+    }
+  }
+
+  .c-companyIpoCalender_body {
+    .c-companyIpoCalender_body-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      thead {
+        background-color: #eee;
+
+        th {
+          padding: 5px 0;
+        }
+      }
+
+      .c-companyIpoCalender_date {
+        text-align: right;
+        vertical-align: top;
+        height: 40px;
+        font-size: $font-size-x-small;
+        border: 1px solid #eee;
+
+        &.notCurrentMonth {
+          color: #ccc;
+        }
+      }
+    }
+  }
+}

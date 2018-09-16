@@ -1,4 +1,3 @@
-company-ipo-calender(test-props="by ogawa")
 - @companies.each do |company|
   .c-ipoInfo.u-mB20.u-shadow
     .c-ipoInfo_header
@@ -6,7 +5,7 @@ company-ipo-calender(test-props="by ogawa")
       = company.ipo_information.market.name
     .c-ipoInfo_body
       .c-ipoInfo_bodyLeft
-        .c-ipoCalender
+        company-ipo-calender(ipo-information="#{company.ipo_information.to_json}")
       .c-ipoInfo_bodyRight
         table.c-ipoInfo_table
           tr
@@ -23,7 +22,7 @@ company-ipo-calender(test-props="by ogawa")
             td SBI証券
 
 - content_for :aside
-  p
+  p side
 
 /一覧表示内容
 /企業名

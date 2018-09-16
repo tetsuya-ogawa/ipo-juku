@@ -1,4 +1,4 @@
-import CompanyIpoCalender from './company_ipo_calender.vue'
+import CompanyIpoCalender from './company_ipo_calender/company_ipo_calender.vue'
 
 const components = [
     CompanyIpoCalender
