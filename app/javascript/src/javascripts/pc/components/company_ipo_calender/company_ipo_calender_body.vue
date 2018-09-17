@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr v-for="dateRow in dateRows">
-                    <td v-for="date in dateRow" class="c-companyIpoCalender_date" v-bind:class="[date.kind, date.bbPeriod, date.pPeriod]">{{date['date']}}</td>
+                    <td v-for="date in dateRow" class="c-companyIpoCalender_date" v-bind:class="[date.kind, date.bbPeriod, date.pPeriod, date.listingDate]">{{date['date']}}</td>
                 </tr>
             </tbody>
         </table>
@@ -41,6 +41,10 @@
               const target = new Date(year, month - 1, date)
               const option = p_start.getTime() == target.getTime() ? '--start' : target.getTime() == p_end.getTime() ? '--end' : ''
               return p_start <= target && target <= p_end ? `pPeriod${option}` : ''
+          },
+          isListingdDate(year, month, date) {
+              const listingDate = new Date(this.parsedIpoInformation['listing_date'] + 'T00:00')
+              return listingDate.getTime() == new Date(year, month - 1, date).getTime()
           }
         },
         computed: {
@@ -52,14 +56,15 @@
             let calenderDate = [...Array(42).keys()].map(i => {
                 const bookBuildingPeriod = this.bookBuildingClass(this.year, this.month, i - firstDateWeekDay + 1)
                 const purchasePeriod = this.purchaseClass(this.year, this.month, i - firstDateWeekDay + 1)
+                const listingDate = this.isListingdDate(this.year, this.month, i - firstDateWeekDay + 1) ? 'isListingDate' : ''
                 if(i < firstDateWeekDay) {
-                    return { date: prevMonthLastDate + ++i - firstDateWeekDay, kind: 'prev', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod }
+                    return { date: prevMonthLastDate + ++i - firstDateWeekDay, kind: 'prev', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
                 } else if (i == firstDateWeekDay){
-                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod }
+                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
                 } else if(firstDateWeekDay < i && i < lastDate + firstDateWeekDay) {
-                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod }
+                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
                 } else {
-                    return { date: ++i - lastDate - firstDateWeekDay, kind: 'next', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod }
+                    return { date: ++i - lastDate - firstDateWeekDay, kind: 'next', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
                 }
             })
             for(let i = 0; i < Math.ceil(calenderDate.length / 7); i++) {
