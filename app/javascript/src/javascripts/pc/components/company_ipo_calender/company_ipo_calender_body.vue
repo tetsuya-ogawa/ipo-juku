@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr v-for="dateRow in dateRows">
-                    <td v-for="date in dateRow" class="c-companyIpoCalender_date" v-bind:class="[date.kind, date.bbPeriod, date.pPeriod, date.listingDate]">{{date['date']}}</td>
+                    <td v-for="date in dateRow" class="c-companyIpoCalender_date" v-bind:class="[date.kind, date.bbPeriod, date.pPeriod, date.listingDate, date.winningDate]">{{date['date']}}</td>
                 </tr>
             </tbody>
         </table>
@@ -45,6 +45,10 @@
           isListingdDate(year, month, date) {
               const listingDate = new Date(this.parsedIpoInformation['listing_date'] + 'T00:00')
               return listingDate.getTime() == new Date(year, month - 1, date).getTime()
+          },
+          isWinningDate(year, month, date) {
+              const winningDate = new Date(this.parsedIpoInformation['winning_date'] + 'T00:00')
+              return winningDate.getTime() == new Date(year, month - 1, date).getTime()
           }
         },
         computed: {
@@ -57,14 +61,15 @@
                 const bookBuildingPeriod = this.bookBuildingClass(this.year, this.month, i - firstDateWeekDay + 1)
                 const purchasePeriod = this.purchaseClass(this.year, this.month, i - firstDateWeekDay + 1)
                 const listingDate = this.isListingdDate(this.year, this.month, i - firstDateWeekDay + 1) ? 'isListingDate' : ''
+                const winningDate = this.isWinningDate(this.year, this.month, i - firstDateWeekDay + 1) ? 'isWinningDate' : ''
                 if(i < firstDateWeekDay) {
-                    return { date: prevMonthLastDate + ++i - firstDateWeekDay, kind: 'prev', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
+                    return { date: prevMonthLastDate + ++i - firstDateWeekDay, kind: 'prev', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate, winningDate: winningDate }
                 } else if (i == firstDateWeekDay){
-                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
+                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate, winningDate: winningDate }
                 } else if(firstDateWeekDay < i && i < lastDate + firstDateWeekDay) {
-                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
+                    return { date: ++i - firstDateWeekDay, bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate, winningDate: winningDate }
                 } else {
-                    return { date: ++i - lastDate - firstDateWeekDay, kind: 'next', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate }
+                    return { date: ++i - lastDate - firstDateWeekDay, kind: 'next', bbPeriod: bookBuildingPeriod, pPeriod: purchasePeriod, listingDate: listingDate, winningDate: winningDate }
                 }
             })
             for(let i = 0; i < Math.ceil(calenderDate.length / 7); i++) {
