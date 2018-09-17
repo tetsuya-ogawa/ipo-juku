@@ -35,11 +35,22 @@
         vertical-align: top;
         height: 40px;
         font-size: $font-size-x-small;
+        line-height: 17px;
         border: 1px solid #eee;
 
         &.prev,
         &.next {
           color: #ccc;
+        }
+
+        &.today {
+          span {
+            background-color: $main-color;
+            color: $white;
+            font-weight: bold;
+            display: inline-block;
+            border-radius: 50%;
+          }
         }
 
         &.bbPeriod {
