@@ -1,7 +1,7 @@
 <template>
     <div class="c-companyIpoCalender">
         <company-ipo-calender-header :year=year :month=month :change-month="changeMonth" />
-        <company-ipo-calender-body :year=year :month=month />
+        <company-ipo-calender-body :year=year :month=month :ipo-information=ipoInformation />
     </div>
 </template>
 
@@ -33,7 +33,6 @@
         },
         methods: {
             changeMonth(type) {
-                console.log(type)
                 let year = this.year
                 let month = this.month
                 if(type == 'next'){
