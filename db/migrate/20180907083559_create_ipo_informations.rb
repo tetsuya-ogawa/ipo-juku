@@ -12,6 +12,7 @@ class CreateIpoInformations < ActiveRecord::Migration[5.2]
       t.integer :public_offering_price
       t.date :lottery_period_start
       t.date :lottery_period_end
+      t.date :winning_date
       t.date :purchase_period_start
       t.date :purchase_period_end
       t.integer :initial_price

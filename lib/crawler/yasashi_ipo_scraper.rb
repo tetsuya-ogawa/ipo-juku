@@ -85,6 +85,15 @@ module Crawler
       end
     end
 
+    def winning_date
+      @tables[:ipo_schedule].css('th').each do |content|
+        if content.text == '当選発表日'
+          return nil if content.next.next.text == '未発表'
+          return add_year_to_date_string(content.next.next.text.sub(/月/, '/').gsub(/[^0-9\/]/, ''))
+        end
+      end
+    end
+
     def purchase_period
       @tables[:ipo_schedule].css('th').each do |content|
         if content.text == '購入申込期間'

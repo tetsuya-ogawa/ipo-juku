@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.string "address"
     t.string "code", null: false
     t.text "business_content"
+    t.bigint "industry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["industry_id"], name: "index_companies_on_industry_id"
   end
 
   create_table "company_audit_corporations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -56,6 +58,13 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.index ["company_id"], name: "index_company_sales_on_company_id"
   end
 
+  create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_industries_on_name", unique: true
+  end
+
   create_table "ipo_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "company_id"
     t.bigint "market_id"
@@ -68,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.integer "public_offering_price"
     t.date "lottery_period_start"
     t.date "lottery_period_end"
+    t.date "winning_date"
     t.date "purchase_period_start"
     t.date "purchase_period_end"
     t.integer "initial_price"
@@ -113,6 +123,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.index ["company_id"], name: "index_shareholders_on_company_id"
   end
 
+  add_foreign_key "companies", "industries"
   add_foreign_key "company_audit_corporations", "audit_corporations"
   add_foreign_key "company_audit_corporations", "companies"
   add_foreign_key "company_sales", "companies"

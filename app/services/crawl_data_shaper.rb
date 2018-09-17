@@ -30,7 +30,7 @@ class CrawlDataShaper
   end
 
   def build_attribute(scrapers_with_site)
-    attributes = [:company, :ipo_information, :company_sales, :shareholder, :audit_corporation, :secretary, :market]
+    attributes = [:company, :ipo_information, :company_sales, :shareholder, :audit_corporation, :secretary, :market, :industry]
     {}.tap do |hash|
       attributes.each { |attribute| hash[attribute] = send("#{attribute}_attribute", scrapers_with_site) }
     end
@@ -56,6 +56,7 @@ class CrawlDataShaper
       public_offering_price: scrapers_with_site[:yasashi_ipo].public_offering_price,
       lottery_period_start: scrapers_with_site[:yasashi_ipo].lottery_period&.[](0),
       lottery_period_end: scrapers_with_site[:yasashi_ipo].lottery_period&.[](1),
+      winning_date: scrapers_with_site[:yasashi_ipo].winning_date,
       purchase_period_start: scrapers_with_site[:yasashi_ipo].purchase_period&.[](0),
       purchase_period_end: scrapers_with_site[:yasashi_ipo].purchase_period&.[](1),
       initial_price: scrapers_with_site[:yasashi_ipo].initial_price,
@@ -81,5 +82,9 @@ class CrawlDataShaper
 
   def market_attribute(scrapers_with_site)
     { name: scrapers_with_site[:yasashi_ipo].market }
+  end
+
+  def industry_attribute(scrapers_with_site)
+      { name: scrapers_with_site[:tokyo_ipo].industry }
   end
 end

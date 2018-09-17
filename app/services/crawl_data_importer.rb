@@ -5,10 +5,12 @@ class CrawlDataImporter
 
   def exec # rubocop:disable all
     @params.each do |code, param|
+      industry = Industry.find_or_create_by(name: param[:industry][:name])
+      market = Market.find_or_create_by(name: param[:market][:name])
       company = Company.find_or_create_by(code: code) do |comp|
         comp.attributes = param[:company]
+        comp.industry_id = industry.id
       end
-      market = Market.find_or_create_by(name: param[:market][:name])
       IpoInformation.find_or_initialize_by(company_id: company.id) do |ipo_info|
         ipo_info.attributes = param[:ipo_information]
         ipo_info.market_id = market.id

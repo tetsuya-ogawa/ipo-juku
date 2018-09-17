@@ -28,6 +28,10 @@ module Crawler
       @tables[:company].css('.main_data')[0].text
     end
 
+    def industry
+      @tables[:company].css('.main_data')[1].text
+    end
+
     def listed_date
       @tables[:company].css('.main_data')[5].text
     end
