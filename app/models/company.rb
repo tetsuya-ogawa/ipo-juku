@@ -18,4 +18,8 @@ class Company < ApplicationRecord
   def to_param
     code
   end
+
+  def main_secretary
+    secretaries.find_by(is_main?: true)&.securities_company
+  end
 end

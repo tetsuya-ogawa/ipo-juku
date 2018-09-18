@@ -36,7 +36,7 @@ class CrawlDataImporter
       param[:secretary].each do |secretary_param|
         sc = SecuritiesCompany.find_or_initialize_by(name: secretary_param[:name])
         sc.save
-        Secretary.create(company: company, securities_company: sc, rate: secretary_param[:rate]) unless company.securities_companies.pluck(:name).include?(sc.name)
+        Secretary.create(company: company, securities_company: sc, rate: secretary_param[:rate], is_main?: secretary_param[:is_main?]) unless company.securities_companies.pluck(:name).include?(sc.name)
       end
     end
   end

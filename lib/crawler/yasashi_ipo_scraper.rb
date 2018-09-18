@@ -123,7 +123,7 @@ module Crawler
       [].tap do |array|
         @tables[:secretary]&.css('tr td')&.each_slice(5) do |contents|
           next if contents[0].text == '証券会社名'
-          is_main = contents[0].parent.children[1].text == '主幹事'
+          is_main = contents[0].parent.children[1].text == '主幹事' || contents[0].parent.children[1].text == '共同主幹事'
           array << { name: contents[0].text.gsub(/\s/, ''), rate: contents[1].text.gsub(/％|%|-/, ''), is_main?: is_main }
         end
       end

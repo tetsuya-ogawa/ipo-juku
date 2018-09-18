@@ -32,7 +32,7 @@
             td = company.ipo_information.decorate.min_purchase_price
           tr
             th 主幹事
-            td SBI証券
+            td = company.main_secretary&.name
         = link_to '詳細をみる', company_path(company), class: 'c-button'
 
 - content_for :aside
