@@ -8,4 +8,9 @@ class IpoInformationDecorator < Draper::Decorator
       '未公開'
     end
   end
+
+  def min_purchase_price
+    val = public_offering_price.to_i * trading_unit.to_i
+    val.zero? ? '-' : val
+  end
 end

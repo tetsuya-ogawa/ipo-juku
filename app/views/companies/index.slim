@@ -8,7 +8,7 @@
       .c-ipoInfo_bodyLeft
         company-ipo-calender(ipo-information="#{company.ipo_information.to_json}")
       .c-ipoInfo_bodyRight
-        table.c-ipoInfo_table
+        table.c-ipoInfo_table.u-mB35
           tr
             th 業種
             td = company.industry.name
@@ -17,10 +17,10 @@
             td = company.ipo_information.decorate.provisional_condition_period
           tr
             th 公開価格
-            td = company.ipo_information.public_offering_price
+            td = company.ipo_information.public_offering_price || '-'
           tr
             th 初値
-            td = company.ipo_information.initial_price
+            td = company.ipo_information.initial_price || '-'
           tr
             th 公開株数
             td = company.ipo_information.public_shares
@@ -29,10 +29,11 @@
             td = company.ipo_information.trading_unit
           tr
             th 最低購入価格
-            td = company.ipo_information.public_offering_price * company.ipo_information.trading_unit
+            td = company.ipo_information.decorate.min_purchase_price
           tr
             th 主幹事
             td SBI証券
+        = link_to '詳細をみる', company_path(company), class: 'c-button'
 
 - content_for :aside
   p side
