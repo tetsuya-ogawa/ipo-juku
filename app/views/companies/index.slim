@@ -1,7 +1,8 @@
 - @companies.each do |company|
   .c-ipoInfo.u-mB20.u-shadow
     .c-ipoInfo_header
-      h3.u-m0 = "#{company.name} 【#{company.code}】"
+      = link_to company_path(company)
+        h3.u-m0 = "#{company.name} 【#{company.code}】"
       = company.ipo_information.market.name
     .c-ipoInfo_body
       .c-ipoInfo_bodyLeft
@@ -9,14 +10,26 @@
       .c-ipoInfo_bodyRight
         table.c-ipoInfo_table
           tr
+            th 業種
+            td = company.industry.name
+          tr
+            th 仮条件
+            td = company.ipo_information.decorate.provisional_condition_period
+          tr
             th 公開価格
             td = company.ipo_information.public_offering_price
           tr
-            th 最低価格
-            td = company.ipo_information.public_shares
+            th 初値
+            td = company.ipo_information.initial_price
           tr
             th 公開株数
             td = company.ipo_information.public_shares
+          tr
+            th 最低購入株数
+            td = company.ipo_information.trading_unit
+          tr
+            th 最低購入価格
+            td = company.ipo_information.public_offering_price * company.ipo_information.trading_unit
           tr
             th 主幹事
             td SBI証券

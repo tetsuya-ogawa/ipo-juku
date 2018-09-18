@@ -16,6 +16,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'nokogiri'
 gem 'dotenv-rails'
+gem 'draper'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

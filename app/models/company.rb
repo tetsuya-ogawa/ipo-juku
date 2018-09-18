@@ -14,4 +14,8 @@ class Company < ApplicationRecord
   scope :order_by_listed, lambda {
     joins(:ipo_information).order('ipo_informations.listing_date desc')
   }
+
+  def to_param
+    code
+  end
 end
