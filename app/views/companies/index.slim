@@ -1,7 +1,7 @@
 - @companies.each do |company|
   .c-ipoInfo.u-mB20.u-shadow
     .c-ipoInfo_header
-      = link_to company_path(company)
+      = link_to company_path(company), class: 'c-ipoInfo_companyName'
         h3.u-m0 = "#{company.name} 【#{company.code}】"
       = company.ipo_information.market.name
     .c-ipoInfo_body

@@ -1,6 +1,7 @@
 .c-ipoInfo {
   background-color: $white;
   padding: 15px;
+  border-radius: 5px;
 
   .c-ipoInfo_header {
     margin-top: 5px;
@@ -8,6 +9,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .c-ipoInfo_companyName {
+      color: $main-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .c-ipoInfo_body {
