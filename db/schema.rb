@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_073119) do
     t.bigint "company_id"
     t.bigint "securities_company_id"
     t.decimal "rate", precision: 4, scale: 2
+    t.boolean "is_main?", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id", "securities_company_id"], name: "unique_company_id_securities_company_id", unique: true
