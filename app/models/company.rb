@@ -6,6 +6,7 @@ class Company < ApplicationRecord
   has_many :audit_corporations, through: :company_audit_corporations
   has_many :secretaries
   has_many :securities_companies, through: :secretaries
+  has_many :shareholders
   validates :name, presence: true
   validates :code, presence: true
   validates :home_page, allow_blank: true, url: true
