@@ -1,33 +1,54 @@
-h1.title = "#{@company.name} 【#{@company.code}】"
-p = @company.ipo_information.listing_date
-p = @company.ipo_information.market.name
-p = @company.main_secretary&.name
-p = @company.industry.name
-p = @company.business_content
+.p-company.u-shadow
+  .p-company_title.u-flex.u-justifyContentBetween.u-alignItemsCenter.u-mB40
+    h1.title.u-m0 = "#{@company.name} 【#{@company.code}】"
+    .p-company_listingDate = "上場日 #{@company.ipo_information.listing_date.strftime('%m月%d日')}"
+  h3.title.p-company_h3 企業情報
+  table.p-company_mainTable.u-mB30
+    tr
+      th.u-textLeft 上場市場
+      td = @company.ipo_information.market.name
+    tr
+      th.u-textLeft 主幹事
+      td = @company.main_secretary&.name
+    tr
+      th.u-textLeft 業種
+      td = @company.industry.name
+    tr
+      th.u-textLeft 事業内容
+      td = @company.business_content
+  h3.title.p-company_h3 各種期間
+  table.p-company_mainTable
+    tr
+      th.u-textLeft 抽選申込期間
+      td = @company.ipo_information.decorate.lottery_period
+    tr
+      th.u-textLeft 当選日
+      td = @company.ipo_information.winning_date.strftime('%m月%d日')
+    tr
+      th.u-textLeft 購入期間
+      td = @company.ipo_information.decorate.purchase_period
+    tr
+      th.u-textLeft 上場日
+      td = @company.ipo_information.listing_date.strftime('%m月%d日')
+ 
+  p = @company.ipo_information.decorate.provisional_condition_period
+  p = @company.ipo_information.public_offering_price
+  p = @company.ipo_information.initial_price
 
-p = @company.ipo_information.decorate.lottery_period
-p = @company.ipo_information.decorate.purchase_period
-p = @company.ipo_information.winning_date
-p = @company.ipo_information.listing_date
+  p = @company.ipo_information.public_shares
+  p = @company.ipo_information.winning_shares
+  p = @company.ipo_information.sold_shares
 
-p = @company.ipo_information.decorate.provisional_condition_period
-p = @company.ipo_information.public_offering_price
-p = @company.ipo_information.initial_price
+  - @company.secretaries.each do |secretary|
+    p = secretary.securities_company.name
+    p = secretary.rate
 
-p = @company.ipo_information.public_shares
-p = @company.ipo_information.winning_shares
-p = @company.ipo_information.sold_shares
+  - @company.company_sales.group_by { |sales| sales.period }.each do |period, sales|
+    p = period
+    - sales.each do |sale|
+      p = sale.amount_of_sales
 
-- @company.secretaries.each do |secretary|
-  p = secretary.securities_company.name
-  p = secretary.rate
-
-- @company.company_sales.group_by { |sales| sales.period }.each do |period, sales|
-  p = period
-  - sales.each do |sale|
-    p = sale.amount_of_sales
-
-- @company.shareholders.each do |shareholder|
-  p
-    = shareholder.name
-    span = shareholder.rate
+  - @company.shareholders.each do |shareholder|
+    p
+      = shareholder.name
+      span = shareholder.rate

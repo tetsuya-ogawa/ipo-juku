@@ -1,0 +1,46 @@
+.p-company {
+  padding: 20px;
+  background-color: $white;
+
+  .p-company_title {
+    border-bottom: 3px solid $main-color;
+    padding-bottom: 16px;
+    line-height: 1;
+  }
+
+  .p-company_listingDate {
+    background-color: #D85A60;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 2px;
+  }
+
+  .p-company_mainTable {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 15px;
+    //border-bottom: 1px solid $main-color;
+
+    th {
+      padding: 17px 5px;
+      vertical-align: top;
+      width: 125px;
+
+      border-bottom: 1px dashed #aaa;
+    }
+
+    td {
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+
+      border-bottom: 1px dashed #aaa;
+    }
+  }
+
+  .p-company_h3 {
+    border-left: 3px solid #41A5C0;
+    padding: 3px 10px;
+    margin: 0;
+  }
+}
