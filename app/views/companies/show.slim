@@ -69,11 +69,29 @@
         = content_tag :td, "#{secretary.rate} %", class: klass
 
   h3.title.p-company_h3 業績
+  p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
+  p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
   - @company.company_sales.group_by { |sales| sales.period }.each do |period, sales|
-    p = period
-    - sales.each do |sale|
-      p = sale.amount_of_sales
-
+    p.u-bold = period.strftime('%Y年%m月')
+    table.p-company_captionTable.u-mB30
+      tr
+        th
+        th.u-textCenter 売上高
+        th.u-textCenter 経常利益
+        th.u-textCenter 当期純利益
+        th.u-textCenter 純資産額
+        th.u-textCenter 1株あたりの純利益
+        th.u-textCenter 1株あたりの純資産額
+      - sales.each do |sale|
+        tr
+          td.u-textCenter.u-bold = sale.kind_i18n || '-'
+          td.u-textCenter = sale.amount_of_sales || '-'
+          td.u-textCenter = sale.ordinary_income || '-'
+          td.u-textCenter = sale.profit || '-'
+          td.u-textCenter = sale.asset || '-'
+          td.u-textCenter = sale.profit_per_stock || '-'
+          td.u-textCenter = sale.asset_per_stock || '-'
+  .u-mT20
   h3.title.p-company_h3 株主構成
   table.p-company_captionTable.u-mB30.u-mT20
     tr

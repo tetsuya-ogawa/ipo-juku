@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      company_sale: 業績
+    attributes:
+      company_sale:
+        kind: 種別
+  enums:
+    company_sale:
+      kind:
+        linking: 連結
+        unit: 単体

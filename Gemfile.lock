@@ -82,6 +82,8 @@ GEM
       activemodel-serializers-xml (~> 1.0)
       activesupport (~> 5.0)
       request_store (~> 1.0)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.7.1)
     execjs (2.7.0)
     factory_bot (4.11.0)
@@ -257,6 +259,7 @@ DEPENDENCIES
   chromedriver-helper
   dotenv-rails
   draper
+  enum_help
   factory_bot_rails
   foreman
   jbuilder (~> 2.5)
