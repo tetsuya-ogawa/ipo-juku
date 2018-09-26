@@ -57,13 +57,13 @@
       td = @company.ipo_information.sold_shares.to_s + '株'
 
   h3.title.p-company_h3 引受証券会社
-  table.p-company_captionTable.u-mB30.u-mT10
+  table.p-company_captionTable.u-mB30.u-mT20
     tr
-      th 幹事
-      th 割当
+      th.u-textLeft 幹事
+      th.u-textLeft 割当
     - @company.secretaries.order('rate desc').each do |secretary|
       tr
-        - klass = secretary.is_main? ? 'u-textCenter isMain' : 'u-textCenter'
+        - klass = secretary.is_main? ? 'isMain' : ''
         = content_tag :td, class: "#{klass}" do
           span.p-company_secretaryName = secretary.securities_company.name
         = content_tag :td, "#{secretary.rate} %", class: klass
@@ -75,10 +75,10 @@
       p = sale.amount_of_sales
 
   h3.title.p-company_h3 株主構成
-  table.p-company_captionTable.u-mB30
+  table.p-company_captionTable.u-mB30.u-mT20
     tr
-      th 株主
-      th 割当
+      th.u-textLeft 株主
+      th.u-textLeft 割当
     - @company.shareholders.order('rate desc').each do |shareholder|
       tr
         td = shareholder.name

@@ -39,6 +39,14 @@
 
   .p-company_captionTable {
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th {
+      padding: 10px;
+      background-color: $main-color;
+      color: $white;
+    }
 
     td {
       padding: 17px 5px;
