@@ -20,7 +20,6 @@
     width: 100%;
     padding: 10px 0;
     font-size: 15px;
-    //border-bottom: 1px solid $main-color;
 
     th {
       padding: 17px 5px;
@@ -35,6 +34,34 @@
       letter-spacing: 0.3px;
 
       border-bottom: 1px dashed #aaa;
+    }
+  }
+
+  .p-company_captionTable {
+    width: 100%;
+
+    td {
+      padding: 17px 5px;
+      border-bottom: 1px dashed #aaa;
+
+      &.isMain {
+        font-weight: bold;
+
+        .p-company_secretaryName {
+          position: relative;
+          &::after {
+            position: absolute;
+            top: -4px;
+            right: -60px;
+            content: '主幹事';
+            color: $base-color;
+            background-color: $accent-color;
+            padding: 4px;
+            border-radius: 3px;
+            font-size: 12px;
+          }
+        }
+      }
     }
   }
 
