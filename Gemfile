@@ -18,6 +18,7 @@ gem 'nokogiri'
 gem 'dotenv-rails'
 gem 'draper'
 gem 'enum_help'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

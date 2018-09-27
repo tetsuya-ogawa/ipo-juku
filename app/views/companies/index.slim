@@ -1,3 +1,6 @@
+- content_for :head
+  = rel_next_prev_link_tags @companies
+
 - @companies.each do |company|
   .c-ipoInfo.u-mB20.u-shadow
     .c-ipoInfo_header
@@ -34,6 +37,9 @@
             th 主幹事
             td = company.main_secretary&.name
         = link_to '詳細をみる', company_path(company), class: 'c-button'
+
+.u-textCenter.u-mB20
+  = paginate @companies
 
 - content_for :aside
   p side
