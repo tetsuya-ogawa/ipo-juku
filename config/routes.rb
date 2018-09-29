@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'top#index'
+  root 'companies#index'
   resources :companies, only: [:index, :show]
 
   namespace :admins, as: :admin, path: :admin do

@@ -1,54 +1,55 @@
 - content_for :head
   = rel_next_prev_link_tags @companies
 
-- @companies.each do |company|
-  .c-ipoInfo.u-mB20.u-shadow
-    .c-ipoInfo_header
-      = link_to company_path(company), class: 'c-ipoInfo_companyName'
-        h3.u-m0 = "#{company.name} 【#{company.code}】"
-      = company.ipo_information.market.name
-    .c-ipoInfo_body
-      .c-ipoInfo_bodyLeft
-        company-ipo-calender(ipo-information="#{company.ipo_information.to_json}")
-      .c-ipoInfo_bodyRight
-        table.c-ipoInfo_table.u-mB35
-          tr
-            th 業種
-            td = company.industry.name
-          tr
-            th 仮条件
-            td = company.ipo_information.decorate.provisional_condition_period
-          tr
-            th 公開価格
-            td = company.ipo_information.public_offering_price || '-'
-          tr
-            th 初値
-            td = company.ipo_information.initial_price || '-'
-          tr
-            th 公開株数
-            td = company.ipo_information.public_shares
-          tr
-            th 最低購入株数
-            td = company.ipo_information.trading_unit
-          tr
-            th 最低購入価格
-            td = company.ipo_information.decorate.min_purchase_price
-          tr
-            th 主幹事
-            td = company.main_secretary&.name
-        = link_to '詳細をみる', company_path(company), class: 'c-button'
+.p-companies
+  - @companies.each do |company|
+    .c-ipoInfo.u-mB20.u-shadow
+      .c-ipoInfo_header
+        = link_to company_path(company), class: 'c-ipoInfo_companyName'
+          h3.u-m0 = "#{company.name} 【#{company.code}】"
+        = company.ipo_information.market.name
+      .c-ipoInfo_body
+        .c-ipoInfo_bodyLeft
+          company-ipo-calender(ipo-information="#{company.ipo_information.to_json}")
+        .c-ipoInfo_bodyRight
+          table.c-ipoInfo_table.u-mB35
+            tr
+              th 業種
+              td = company.industry.name
+            tr
+              th 仮条件
+              td = company.ipo_information.decorate.provisional_condition_period
+            tr
+              th 公開価格
+              td = company.ipo_information.public_offering_price || '-'
+            tr
+              th 初値
+              td = company.ipo_information.initial_price || '-'
+            tr
+              th 公開株数
+              td = company.ipo_information.public_shares
+            tr
+              th 最低購入株数
+              td = company.ipo_information.trading_unit
+            tr
+              th 最低購入価格
+              td = company.ipo_information.decorate.min_purchase_price
+            tr
+              th 主幹事
+              td = company.main_secretary&.name
+          = link_to '詳細をみる', company_path(company), class: 'c-button'
 
-.u-textCenter.u-mB20
-  = paginate @companies
+  .u-textCenter.u-mB20
+    = paginate @companies
 
-- content_for :aside
-  p side
+  - content_for :aside
+    p side
 
-/一覧表示内容
-/企業名
-/上場市場
-/スケジュール（カレンダー）
-/仮条件(公開日) or 公開価格
-/最低価格
-/公開株数
-/主幹事
+  /一覧表示内容
+  /企業名
+  /上場市場
+  /スケジュール（カレンダー）
+  /仮条件(公開日) or 公開価格
+  /最低価格
+  /公開株数
+  /主幹事

@@ -1,4 +1,21 @@
 .l-header {
   height: 80px;
   min-width: 1100px;
+  background-color: $main-2-color;
+  padding: 10px 0;
+
+  .l-header_logo {
+    height: 60px;
+  }
+
+  .l-header_text {
+    font-size: 40px;
+    font-family: serif;
+    line-height: 1;
+    color: $base-color;
+  }
+
+  .l-header_logoLink {
+    text-decoration: none;
+  }
 }
