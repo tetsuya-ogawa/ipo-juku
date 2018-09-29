@@ -27,8 +27,6 @@ RUN RAILS_ENV=development bundle exec rake assets:precompile --trace
 
 ADD . /rails_app
 
-ENV RAILS_ENV production
-
 EXPOSE 3000
 
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+CMD ["bundle", "exec", "puma", "-e", "production", "-C", "config/puma.rb"]
