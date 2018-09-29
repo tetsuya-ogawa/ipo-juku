@@ -1,6 +1,8 @@
 doctype html
 html
   head
+    = render 'shared/meta_tag'
+    = yield :head
     = javascript_pack_tag 'pc/application'
     = stylesheet_pack_tag 'pc/application'
     = yield :javascript_head
