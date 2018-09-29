@@ -23,7 +23,7 @@ COPY config /rails_app/config
 COPY bin /rails_app/bin
 COPY app/assets /rails_app/app/assets
 COPY app/javascript /rails_app/app/javascript
-RUN RAILS_ENV=development bundle exec rake assets:precompile --trace
+RUN bundle exec rails assets:precompile --trace
 
 ADD . /rails_app
 
