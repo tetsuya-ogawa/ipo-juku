@@ -52,7 +52,7 @@ module MetaTagHelper
   end
 
   def default_description(object = nil)
-    return 'IPO塾説明' unless object
+    return 'IPO塾は投資初心者の方に楽に儲かるをコンセプトに最新のIPO情報をお届けします。' unless object
     return object + current_page if object.is_a? String
     object.decorate.meta_description + current_page
   end

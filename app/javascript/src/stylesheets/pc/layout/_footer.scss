@@ -3,7 +3,20 @@
   color: $base-color;
 
   .l-footer_block {
-    height: 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+
+  .l-footer_logo {
+    height: 60px;
+  }
+
+  .l-footer_logoText {
+    font-size: 40px;
+    font-family: serif;
+    line-height: 1;
+    color: $base-color;
   }
 
   .l-footer_block--under {

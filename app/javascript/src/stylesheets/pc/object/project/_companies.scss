@@ -1,3 +1,9 @@
 .p-companies {
   padding: 20px 0;
+
+  .p-companies_h1 {
+    line-height: 1;
+    border-left: 5px solid $main-color;
+    padding-left: 20px;
+  }
 }
