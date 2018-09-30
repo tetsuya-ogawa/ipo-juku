@@ -61,7 +61,7 @@
             left: 0;
             height: 17px;
             width: 100%;
-            background-color: yellow;
+            background-color: #afe8ff;
           }
 
           &--start {
@@ -73,7 +73,7 @@
               height: 17px;
               width: 93%;
               line-height: 17px;
-              background-color: yellow;
+              background-color: #afe8ff;
               text-align: left;
               padding-left: 5px;
               font-weight: bold;
@@ -89,7 +89,7 @@
               left: 0;
               height: 17px;
               width: 90%;
-              background-color: yellow;
+              background-color: #afe8ff;
               border-radius: 0 3px 3px 0;
             }
           }
@@ -103,7 +103,7 @@
             left: 0;
             height: 17px;
             width: 100%;
-            background-color: cadetblue;
+            background-color: #a1b4ff;
           }
 
           &--start {
@@ -115,7 +115,7 @@
               height: 17px;
               width: 93%;
               line-height: 17px;
-              background-color: cadetblue;
+              background-color: #a1b4ff;
               text-align: left;
               padding-left: 5px;
               font-weight: bold;
@@ -131,7 +131,7 @@
               left: 0;
               height: 17px;
               width: 90%;
-              background-color: cadetblue;
+              background-color: #a1b4ff;
               border-radius: 0 3px 3px 0;
             }
           }
@@ -147,9 +147,10 @@
             height: 17px;
             width: 90%;
             line-height: 17px;
-            background-color: red;
+            background-color: $accent-color;
             border-radius: 3px;
             font-weight: bold;
+            color: $white;
           }
         }
 
@@ -163,9 +164,10 @@
             height: 17px;
             width: 90%;
             line-height: 17px;
-            background-color: red;
+            background-color: $accent-color;
             border-radius: 3px;
             font-weight: bold;
+            color: $white;
           }
         }
       }
