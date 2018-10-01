@@ -31,25 +31,25 @@
         props: ['year', 'month', 'ipoInformation'],
         methods: {
           bookBuildingClass(year, month, date) {
-              const bb_start = new Date(this.parsedIpoInformation['lottery_period_start'] + 'T00:00')
-              const bb_end = new Date(this.parsedIpoInformation['lottery_period_end'] + 'T00:00')
+              const bb_start = new Date(this.parsedIpoInformation['lottery_period_start'] + 'T00:00+09:00')
+              const bb_end = new Date(this.parsedIpoInformation['lottery_period_end'] + 'T00:00+09:00')
               const target = new Date(year, month - 1, date)
               const option = bb_start.getTime() == target.getTime() ? '--start' : target.getTime() == bb_end.getTime() ? '--end' : ''
               return bb_start <= target && target <= bb_end ? `bbPeriod${option}` : ''
           },
           purchaseClass(year, month, date) {
-              const p_start = new Date(this.parsedIpoInformation['purchase_period_start'] + 'T00:00')
-              const p_end = new Date(this.parsedIpoInformation['purchase_period_end'] + 'T00:00')
+              const p_start = new Date(this.parsedIpoInformation['purchase_period_start'] + 'T00:00+09:00')
+              const p_end = new Date(this.parsedIpoInformation['purchase_period_end'] + 'T00:00+09:00')
               const target = new Date(year, month - 1, date)
               const option = p_start.getTime() == target.getTime() ? '--start' : target.getTime() == p_end.getTime() ? '--end' : ''
               return p_start <= target && target <= p_end ? `pPeriod${option}` : ''
           },
           isListingDate(year, month, date) {
-              const listingDate = new Date(this.parsedIpoInformation['listing_date'] + 'T00:00')
+              const listingDate = new Date(this.parsedIpoInformation['listing_date'] + 'T00:00+09:00')
               return listingDate.getTime() == new Date(year, month - 1, date).getTime()
           },
           isWinningDate(year, month, date) {
-              const winningDate = new Date(this.parsedIpoInformation['winning_date'] + 'T00:00')
+              const winningDate = new Date(this.parsedIpoInformation['winning_date'] + 'T00:00+09:00')
               return winningDate.getTime() == new Date(year, month - 1, date).getTime()
           },
           isToday(year, month, date) {
