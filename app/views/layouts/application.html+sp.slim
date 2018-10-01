@@ -3,11 +3,13 @@ html
   head
     = render 'shared/meta_tag'
     = yield :head
+    = render 'shared/gtm_script' if Rails.env.production?
     = javascript_pack_tag 'pc/application'
     = stylesheet_pack_tag 'pc/application'
     = yield :javascript_head
   body class="#{controller_path.sub(/\//, '_') + '-' + controller.action_name}"
-    header.header = render 'shared/header'
+    = render 'shared/gtm_noscript' if Rails.env.production?
+    = render 'shared/header'
     main#app data-namespace="#{(controller_path.sub(/\//, '_') + '_' + controller.action_name).camelize}"
       = yield
-    footer.footer = render 'shared/footer'
+    = render 'shared/footer'
