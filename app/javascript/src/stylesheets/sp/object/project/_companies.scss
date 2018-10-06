@@ -1,0 +1,39 @@
+.p-companies {
+  padding: 10px;
+
+  .p-companies_company {
+    background-color: $white;
+    padding: 20px 5px;
+    border-radius: 3px;
+  }
+
+  .p-companies_companyName {
+    margin: 0;
+    width: 60%;
+    line-height: 1.1;
+  }
+
+  .p-companies_companySecretary {
+    background-color: $main-color;
+    padding: 7px;
+    color: $base-color;
+    font-weight: bold;
+    border-radius: 3px;
+  }
+
+  .p-companies_companyInfo {
+    background-color: #eee;
+    width: 49%;
+    padding: 15px 5px;
+
+    .p-companies_companyInfoLabel {
+      font-size: 17px;
+    }
+
+    .p-companies_companyInfoValue {
+      font-weight: bold;
+      text-align: right;
+      font-size: 16px;
+    }
+  }
+}

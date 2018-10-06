@@ -1,0 +1,23 @@
+.c-pagination {
+  display: flex;
+  justify-content: center;
+
+  .c-pagination_link {
+    text-decoration: none;
+    font-weight: bold;
+    color: $main-color;
+  }
+
+  .c-pagination_page {
+    padding: 10px;
+    border-radius: 3px;
+
+    &.is-active {
+      background-color: $main-2-color;
+
+      .c-pagination_link {
+        color: $white;
+      }
+    }
+  }
+}

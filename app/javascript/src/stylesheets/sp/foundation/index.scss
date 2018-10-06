@@ -1,0 +1,39 @@
+html, body {
+  position: relative;
+  height: 100%;
+  font-size: $font-size-base;
+  line-height: 1em;
+  color: #333;
+  margin: 0;
+}
+
+:focus {
+  outline: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1.title {
+  font-size: $font-size-h1;
+}
+
+h2.title {
+  font-size: $font-size-h2;
+}
+
+h3.title {
+  font-size: $font-size-h3;
+}
+
+h4.title {
+  font-size: $font-size-h4;
+}

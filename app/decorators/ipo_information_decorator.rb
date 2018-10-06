@@ -9,9 +9,9 @@ class IpoInformationDecorator < Draper::Decorator
     end
   end
 
-  def lottery_period
+  def lottery_period(format = '%m月%d日')
     if lottery_period_start.present? && lottery_period_end.present?
-      "#{lottery_period_start.strftime('%m月%d日')} ~ #{lottery_period_end.strftime('%m月%d日')}"
+      "#{lottery_period_start.strftime(format)} ~ #{lottery_period_end.strftime(format)}"
     else
       '未公開'
     end
