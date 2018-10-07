@@ -3,15 +3,15 @@ class IpoInformationDecorator < Draper::Decorator
 
   def provisional_condition_period
     if provisional_condition_start.present? && provisional_condition_end.present?
-      "#{provisional_condition_start} ~ #{provisional_condition_end}"
+      "#{provisional_condition_start.to_s(:delimited)} ~ #{provisional_condition_end.to_s(:delimited)}"
     else
       '未公開'
     end
   end
 
-  def lottery_period
+  def lottery_period(format = '%m月%d日')
     if lottery_period_start.present? && lottery_period_end.present?
-      "#{lottery_period_start.strftime('%m月%d日')} ~ #{lottery_period_end.strftime('%m月%d日')}"
+      "#{lottery_period_start.strftime(format)} ~ #{lottery_period_end.strftime(format)}"
     else
       '未公開'
     end
@@ -27,6 +27,6 @@ class IpoInformationDecorator < Draper::Decorator
 
   def min_purchase_price
     val = public_offering_price.to_i * trading_unit.to_i
-    val.zero? ? '-' : val
+    val.zero? ? '-' : val.to_s(:delimited)
   end
 end

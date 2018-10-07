@@ -1,0 +1,96 @@
+.p-company {
+  padding: 10px;
+  .p-company_title {
+    line-height: 1;
+    font-size: 22px;
+    margin: 10px 0;
+    border-bottom: 3px solid $main-color;
+
+    h1 {
+      margin: 0 0 10px;
+    }
+  }
+
+  .p-company_h2 {
+    border-left: 3px solid $main-color;
+    padding: 3px 5px;
+  }
+
+  .p-company_infoBox {
+    width: 50%;
+    background-color: #f2fdff;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid white;
+
+    .p-company_infoBoxLabel {
+      margin-bottom: 3px;
+    }
+
+    .p-company_infoBoxValue {
+      text-align: right;
+      font-weight: bold;
+      font-size: 17px;
+      line-height: 1.3;
+
+      a {
+        color: $main-color;
+      }
+    }
+
+    &--full {
+      @extend .p-company_infoBox;
+      padding: 13px 10px;
+      width: 100%;
+    }
+  }
+
+  .p-company_infoRow {
+    padding: 15px 0;
+    border-bottom: 1px dashed #ccc;
+
+    .isMain {
+      font-weight: bold;
+
+      .p-company_secretaryName {
+        position: relative;
+        &::after {
+          position: absolute;
+          top: -4px;
+          right: -60px;
+          content: '主幹事';
+          color: $base-color;
+          background-color: $accent-color;
+          padding: 4px;
+          border-radius: 3px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .p-company_salesTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th {
+      padding: 8px 5px;
+    }
+
+    td {
+      padding: 15px 5px;
+    }
+
+    .p-company_salesTableHeader {
+      color: $white;
+      background-color: $main-color;
+    }
+
+    .p-company_salesTableRow {
+      &:nth-child(2n) {
+        background-color: #f2fdff;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+// 文言をオーバーライド
+.c-companyIpoCalender {
+  .c-companyIpoCalender_body {
+    .c-companyIpoCalender_body-table {
+      .c-companyIpoCalender_date {
+        &.bbPeriod {
+          &--start {
+            &::before {
+              content: 'BB';
+            }
+          }
+        }
+        &.pPeriod {
+          &--start {
+            &::before {
+              content: '購入';
+            }
+          }
+        }
+        &.isWinningDate {
+          &::before {
+            content: '当選';
+          }
+        }
+        &.isListingDate {
+          &::before {
+            content: '上場';
+          }
+        }
+      }
+    }
+  }
+}

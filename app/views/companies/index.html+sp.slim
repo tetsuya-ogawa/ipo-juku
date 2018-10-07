@@ -1,0 +1,23 @@
+- set_meta_title 'IPOスケジュール | IPO塾'
+- content_for :head
+  = rel_next_prev_link_tags @companies
+
+.p-companies
+  /h1.p-companies_h1 直近のIPOスケジュール一覧
+  - @companies.each do |company|
+    .p-companies_company.u-shadow.u-mB25
+      .u-flex.u-justifyContentBetween.u-alignItemsCenter.u-mB20
+        h3.p-companies_companyName = company.name
+        .p-companies_companySecretary = company.secretaries.first.securities_company.name
+      .u-flex.u-justifyContentBetween
+        .p-companies_companyInfo
+          .p-companies_companyInfoLabel.u-mB10 最低購入価格
+          .p-companies_companyInfoValue = "#{company.ipo_information.decorate.min_purchase_price}円"
+        .p-companies_companyInfo
+          .p-companies_companyInfoLabel.u-mB10 BB期間
+          .p-companies_companyInfoValue = company.ipo_information.decorate.lottery_period('%-m/%-d')
+      .u-mT20
+        = link_to '詳細をみる', company_path(company), class: 'c-button'
+
+  .u-textCenter.u-mB20
+    = paginate @companies

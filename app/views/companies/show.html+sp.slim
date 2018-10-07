@@ -1,0 +1,133 @@
+- set_meta_title "#{@company.name}【#{@company.code}】の IPO情報| IPO塾"
+- set_meta_description @company
+.p-company
+  .p-company_title
+    h1.title = "#{@company.name} 【#{@company.code}】"
+  h2.title.p-company_h2 各種期間
+  company-ipo-calender(ipo-information="#{@company.ipo_information.to_json}")
+  .u-mB40
+  h2.title.p-company_h2 価格情報
+  .p-company_infoBox
+    .p-company_infoBoxLabel 仮条件
+    .p-company_infoBoxValue = @company.ipo_information.decorate.provisional_condition_period
+  .p-company_infoBox
+    .p-company_infoBoxLabel 最低購入株数
+    .p-company_infoBoxValue = "#{@company.ipo_information.trading_unit&.to_s(:delimited)}株"
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公開価格
+    .p-company_infoBoxValue = "#{@company.ipo_information.public_offering_price&.to_s(:delimited)}".presence || '未公開'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 初値
+    .p-company_infoBoxValue = @company.ipo_information.initial_price&.to_s(:delimited) || '未公開'
+  h2.title.p-company_h2 株数情報
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公開株数
+    .p-company_infoBoxValue = @company.ipo_information.public_shares&.to_s(:delimited) + '株'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公募株数
+    .p-company_infoBoxValue = @company.ipo_information.winning_shares&.to_s(:delimited) + '株'
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 売出株数
+    .p-company_infoBoxValue = @company.ipo_information.sold_shares&.to_s(:delimited) + '株'
+  .u-mB40
+  h2.title.p-company_h2 引受証券会社
+  - @company.secretaries.order('rate desc').each do |secretary|
+    .p-company_infoRow.u-flex.u-justifyContentBetween
+      - klass = secretary.is_main? ? 'isMain' : ''
+      = content_tag :div, class: "#{klass}" do
+        span.p-company_secretaryName = secretary.securities_company.name
+      = content_tag :div, "#{secretary.rate || '-'} %", class: klass
+  .u-mB40
+  h2.title.p-company_h2 企業情報
+  .p-company_infoBox
+    .p-company_infoBoxLabel 業種
+    .p-company_infoBoxValue = @company.industry.name
+  .p-company_infoBox
+    .p-company_infoBoxLabel 設立日
+    .p-company_infoBoxValue = @company.establishment_date&.strftime('%Y年%-m月%-d日') || '-'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 社長
+    .p-company_infoBoxValue = @company.president_name
+  .p-company_infoBox
+    .p-company_infoBoxLabel ホームページ
+    .p-company_infoBoxValue = link_to '企業HP', @company.home_page
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 事業内容
+    .p-company_infoBoxValue.u-textLeft = @company.business_content
+
+  .u-mB40
+  h2.title.p-company_h2 事業業績
+  h3 単体
+  - close_sales = @company.sales_with(:unit).group_by { |sales| sales.period.strftime('%Y')}.values.sort {|a, b| b <=> a }.flatten[0]
+  .p-company_infoBox
+    .p-company_infoBoxLabel 直近売上
+    .p-company_infoBoxValue = "#{close_sales.amount_of_sales&.to_s(:delimited) || '-'}千円"
+  .p-company_infoBox
+    .p-company_infoBoxLabel 純資産
+    .p-company_infoBoxValue = "#{close_sales.asset&.to_s(:delimited) || '-'}千円"
+  .p-company_infoBox
+    .p-company_infoBoxLabel １株あたり純利益
+    .p-company_infoBoxValue = "#{close_sales.profit_per_stock&.to_s(:delimited) || '-'}円"
+  .p-company_infoBox
+    .p-company_infoBoxLabel １株あたり純資産
+    .p-company_infoBoxValue = "#{close_sales.asset_per_stock&.to_s(:delimited) || '-'}円"
+
+  table.p-company_salesTable.u-mT20
+    tr.p-company_salesTableHeader
+      th.u-textLeft 決算期
+      - @company.sales_with(:unit).group_by { |sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a }.each do |year|
+        th = year
+    - @company.decorate.sp_display_sales_columns.each do |k, v|
+      tr.p-company_salesTableRow
+        td = v
+        - @company.sales_with(:unit).group_by { |sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a }.each do |year|
+          td.u-textRight = @company.sales_with(:unit).select{|sale| sale.period.strftime('%Y') == year.to_s }[0].send(k)&.to_s(:delimited)
+
+  p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
+  p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
+
+  - if @company.has_linking?
+    h3.u-mT30 連結
+    - close_sales = @company.sales_with(:linking).group_by {|sales| sales.period.strftime('%Y')}.values.sort {|a, b| b <=> a}.flatten[0]
+    .p-company_infoBox
+      .p-company_infoBoxLabel 直近売上
+      .p-company_infoBoxValue = "#{close_sales.amount_of_sales&.to_s(:delimited) || '-'}千円"
+    .p-company_infoBox
+      .p-company_infoBoxLabel 純資産
+      .p-company_infoBoxValue = "#{close_sales.asset&.to_s(:delimited) || '-'}千円"
+    .p-company_infoBox
+      .p-company_infoBoxLabel １株あたり純利益
+      .p-company_infoBoxValue = "#{close_sales.profit_per_stock&.to_s(:delimited) || '-'}円"
+    .p-company_infoBox
+      .p-company_infoBoxLabel １株あたり純資産
+      .p-company_infoBoxValue = "#{close_sales.asset_per_stock&.to_s(:delimited) || '-'}円"
+
+    table.p-company_salesTable.u-mT20
+      tr.p-company_salesTableHeader
+        th.u-textLeft 決算期
+        - @company.sales_with(:linking).group_by {|sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a}.each do |year|
+          th = year
+      - @company.decorate.sp_display_sales_columns.each do |k, v|
+        tr.p-company_salesTableRow
+          td = v
+          - @company.sales_with(:linking).group_by {|sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a}.each do |year|
+            td.u-textRight = @company.sales_with(:linking).select{|sale| sale.period.strftime('%Y') == year.to_s}[0].send(k)&.to_s(:delimited) || '-'
+
+    p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
+    p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
+
+  .u-mB40
+  h2.title.p-company_h2 株主構成
+  - @company.shareholders.order('rate desc').each do |shareholder|
+    .p-company_infoRow.u-flex.u-justifyContentBetween
+      = shareholder.name
+      .u-bold = "出資比率 #{shareholder.rate || '-'} %"
+
+  .u-mB40
+  h2.title.p-company_h2 監査法人と上場市場
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 監査法人
+    .p-company_infoBoxValue = @company.audit_corporations.pluck(:name).join(',')
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 上場市場
+    .p-company_infoBoxValue = @company.ipo_information.market.name
