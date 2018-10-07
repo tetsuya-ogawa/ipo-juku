@@ -43,4 +43,28 @@
       width: 100%;
     }
   }
+
+  .p-company_infoRow {
+    padding: 15px 0;
+    border-bottom: 1px dashed #ccc;
+
+    .isMain {
+      font-weight: bold;
+
+      .p-company_secretaryName {
+        position: relative;
+        &::after {
+          position: absolute;
+          top: -4px;
+          right: -60px;
+          content: '主幹事';
+          color: $base-color;
+          background-color: $accent-color;
+          padding: 4px;
+          border-radius: 3px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }

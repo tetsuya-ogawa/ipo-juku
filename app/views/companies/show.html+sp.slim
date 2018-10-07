@@ -29,16 +29,12 @@
     .p-company_infoBoxLabel 売出株数
     .p-company_infoBoxValue = @company.ipo_information.sold_shares.to_s + '株'
   h2.title.p-company_h2 引受証券会社
-  table.p-company_captionTable.u-mB30.u-mT20
-    tr
-      th.u-textLeft 幹事
-      th.u-textLeft 割当
-    - @company.secretaries.order('rate desc').each do |secretary|
-      tr
-        - klass = secretary.is_main? ? 'isMain' : ''
-        = content_tag :td, class: "#{klass}" do
-          span.p-company_secretaryName = secretary.securities_company.name
-        = content_tag :td, "#{secretary.rate} %", class: klass
+  - @company.secretaries.order('rate desc').each do |secretary|
+    .p-company_infoRow.u-flex.u-justifyContentBetween
+      - klass = secretary.is_main? ? 'isMain' : ''
+      = content_tag :div, class: "#{klass}" do
+        span.p-company_secretaryName = secretary.securities_company.name
+      = content_tag :div, "#{secretary.rate || '-'} %", class: klass
   h2.title.p-company_h2 企業情報
   .p-company_infoBox
     .p-company_infoBoxLabel 業種
@@ -97,19 +93,15 @@
 
   .u-mT20
   h2.title.p-company_h2 株主構成
-  table.p-company_captionTable.u-mB30.u-mT20
-    tr
-      th.u-textLeft 株主
-      th.u-textLeft 割当
-    - @company.shareholders.order('rate desc').each do |shareholder|
-      tr
-        td = shareholder.name
-        td = "#{shareholder.rate} %"
+  - @company.shareholders.order('rate desc').each do |shareholder|
+    .p-company_infoRow.u-flex.u-justifyContentBetween
+      = shareholder.name
+      .u-bold = "出資比率 #{shareholder.rate || '-'} %"
 
   h2.title.p-company_h2 監査法人と上場市場
-  .p-company_infoBox
+  .p-company_infoBox--full
     .p-company_infoBoxLabel 監査法人
     .p-company_infoBoxValue = @company.audit_corporations.pluck(:name).join(',')
-  .p-company_infoBox
+  .p-company_infoBox--full
     .p-company_infoBoxLabel 上場市場
     .p-company_infoBoxValue = @company.ipo_information.market.name
