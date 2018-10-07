@@ -1,0 +1,104 @@
+- set_meta_title "#{@company.name}【#{@company.code}】の IPO情報| IPO塾"
+- set_meta_description @company
+.p-company
+  .p-company_title.u-flex.u-justifyContentBetween.u-alignItemsCenter.u-mB40
+    h1.title.u-m0 = "#{@company.name} 【#{@company.code}】"
+  h2.title.p-company_h2 各種期間
+  company-ipo-calender(ipo-information="#{@company.ipo_information.to_json}")
+  h2.title.p-company_h2 価格情報
+  table.p-company_mainTable.u-mB30
+    tr
+      th.u-textLeft 仮条件
+      td = @company.ipo_information.decorate.provisional_condition_period
+    tr
+      th.u-textLeft 公開価格
+      td = @company.ipo_information.public_offering_price || '未公開'
+    tr
+      th.u-textLeft 初値
+      td = @company.ipo_information.initial_price || '未公開'
+  h2.title.p-company_h2 株数情報
+  table.p-company_mainTable.u-mB30
+    tr
+      th.u-textLeft 公開株数
+      td = @company.ipo_information.public_shares.to_s + '株'
+    tr
+      th.u-textLeft 公募株数
+      td = @company.ipo_information.winning_shares.to_s + '株'
+    tr
+      th.u-textLeft 売出株数
+      td = @company.ipo_information.sold_shares.to_s + '株'
+  h2.title.p-company_h2 引受証券会社
+  table.p-company_captionTable.u-mB30.u-mT20
+    tr
+      th.u-textLeft 幹事
+      th.u-textLeft 割当
+    - @company.secretaries.order('rate desc').each do |secretary|
+      tr
+        - klass = secretary.is_main? ? 'isMain' : ''
+        = content_tag :td, class: "#{klass}" do
+          span.p-company_secretaryName = secretary.securities_company.name
+        = content_tag :td, "#{secretary.rate} %", class: klass
+  h2.title.p-company_h2 企業情報
+  table.p-company_mainTable.u-mB30
+    tr
+      th.u-textLeft 上場市場
+      td = @company.ipo_information.market.name
+    tr
+      th.u-textLeft 主幹事
+      td = @company.main_secretary&.name
+    tr
+      th.u-textLeft 業種
+      td = @company.industry.name
+    tr
+      th.u-textLeft 事業内容
+      td = @company.business_content
+
+  h2.title.p-company_h2 業績
+  p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
+  p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
+  table.p-company_captionTable.u-mB30
+    tr
+      th
+      th
+      th.u-textCenter 売上高
+      th.u-textCenter 経常利益
+      th.u-textCenter 当期純利益
+      th.u-textCenter 純資産額
+      th.u-textCenter 1株あたりの純利益
+      th.u-textCenter 1株あたりの純資産額
+    - @company.company_sales.group_by { |sales| sales.period }.each do |period, sales|
+      - sales.each_with_index do |sale, index|
+        tr
+          td class="u-bold #{index == 0 ? 'noBorder' : ''}" = period.strftime('%Y年%m月') if index == 0
+          td.u-textCenter.u-bold = sale.kind_i18n || '-'
+          td.u-textCenter = sale.amount_of_sales || '-'
+          td.u-textCenter = sale.ordinary_income || '-'
+          td.u-textCenter = sale.profit || '-'
+          td.u-textCenter = sale.asset || '-'
+          td.u-textCenter = sale.profit_per_stock || '-'
+          td.u-textCenter = sale.asset_per_stock || '-'
+  /h2.title.p-company_h2 各種期間
+  /table.p-company_mainTable.u-mB30
+    tr
+      th.u-textLeft 抽選申込期間
+      td = @company.ipo_information.decorate.lottery_period
+    tr
+      th.u-textLeft 当選日
+      td = @company.ipo_information.winning_date.strftime('%m月%d日')
+    tr
+      th.u-textLeft 購入期間
+      td = @company.ipo_information.decorate.purchase_period
+    tr
+      th.u-textLeft 上場日
+      td = @company.ipo_information.listing_date.strftime('%m月%d日')
+
+  .u-mT20
+  h2.title.p-company_h2 株主構成
+  table.p-company_captionTable.u-mB30.u-mT20
+    tr
+      th.u-textLeft 株主
+      th.u-textLeft 割当
+    - @company.shareholders.order('rate desc').each do |shareholder|
+      tr
+        td = shareholder.name
+        td = "#{shareholder.rate} %"
