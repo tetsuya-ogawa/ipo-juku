@@ -1,3 +1,18 @@
 .p-company {
+  padding: 10px;
+  .p-company_title {
+    line-height: 1;
+    font-size: 22px;
+    margin: 10px 0;
+    border-bottom: 3px solid $main-color;
 
+    h1 {
+      margin: 0 0 10px;
+    }
+  }
+
+  .p-company_h2 {
+    border-left: 3px solid $main-color;
+    padding: 3px 5px;
+  }
 }

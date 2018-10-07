@@ -1,8 +1,8 @@
 - set_meta_title "#{@company.name}【#{@company.code}】の IPO情報| IPO塾"
 - set_meta_description @company
 .p-company
-  .p-company_title.u-flex.u-justifyContentBetween.u-alignItemsCenter.u-mB40
-    h1.title.u-m0 = "#{@company.name} 【#{@company.code}】"
+  .p-company_title
+    h1.title = "#{@company.name} 【#{@company.code}】"
   h2.title.p-company_h2 各種期間
   company-ipo-calender(ipo-information="#{@company.ipo_information.to_json}")
   h2.title.p-company_h2 価格情報
