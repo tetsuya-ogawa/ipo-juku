@@ -6,30 +6,28 @@
   h2.title.p-company_h2 各種期間
   company-ipo-calender(ipo-information="#{@company.ipo_information.to_json}")
   h2.title.p-company_h2 価格情報
-  table.p-company_mainTable.u-mB30
-    .p-company_infoBox
-      .p-company_infoBoxLabel 仮条件
-      .p-company_infoBoxValue = @company.ipo_information.decorate.provisional_condition_period
-    .p-company_infoBox
-      .p-company_infoBoxLabel 最低購入株数
-      .p-company_infoBoxValue = @company.ipo_information.trading_unit
-    .p-company_infoBox
-      .p-company_infoBoxLabel 公開価格
-      .p-company_infoBoxValue = @company.ipo_information.public_offering_price || '未公開'
-    .p-company_infoBox
-      .p-company_infoBoxLabel 初値
-      .p-company_infoBoxValue = @company.ipo_information.initial_price || '未公開'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 仮条件
+    .p-company_infoBoxValue = @company.ipo_information.decorate.provisional_condition_period
+  .p-company_infoBox
+    .p-company_infoBoxLabel 最低購入株数
+    .p-company_infoBoxValue = "#{@company.ipo_information.trading_unit}株"
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公開価格
+    .p-company_infoBoxValue = "#{@company.ipo_information.public_offering_price}".presence || '未公開'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 初値
+    .p-company_infoBoxValue = @company.ipo_information.initial_price || '未公開'
   h2.title.p-company_h2 株数情報
-  table.p-company_mainTable.u-mB30
-    tr
-      th.u-textLeft 公開株数
-      td = @company.ipo_information.public_shares.to_s + '株'
-    tr
-      th.u-textLeft 公募株数
-      td = @company.ipo_information.winning_shares.to_s + '株'
-    tr
-      th.u-textLeft 売出株数
-      td = @company.ipo_information.sold_shares.to_s + '株'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公開株数
+    .p-company_infoBoxValue = @company.ipo_information.public_shares.to_s + '株'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 公募株数
+    .p-company_infoBoxValue = @company.ipo_information.winning_shares.to_s + '株'
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 売出株数
+    .p-company_infoBoxValue = @company.ipo_information.sold_shares.to_s + '株'
   h2.title.p-company_h2 引受証券会社
   table.p-company_captionTable.u-mB30.u-mT20
     tr
@@ -42,19 +40,35 @@
           span.p-company_secretaryName = secretary.securities_company.name
         = content_tag :td, "#{secretary.rate} %", class: klass
   h2.title.p-company_h2 企業情報
-  table.p-company_mainTable.u-mB30
-    tr
-      th.u-textLeft 上場市場
-      td = @company.ipo_information.market.name
-    tr
-      th.u-textLeft 主幹事
-      td = @company.main_secretary&.name
-    tr
-      th.u-textLeft 業種
-      td = @company.industry.name
-    tr
-      th.u-textLeft 事業内容
-      td = @company.business_content
+  .p-company_infoBox
+    .p-company_infoBoxLabel 業種
+    .p-company_infoBoxValue = @company.industry.name
+  .p-company_infoBox
+    .p-company_infoBoxLabel 設立日
+    .p-company_infoBoxValue = @company.establishment_date&.strftime('%Y年%-m月%-d日') || '-'
+  .p-company_infoBox
+    .p-company_infoBoxLabel 社長
+    .p-company_infoBoxValue = @company.president_name
+  .p-company_infoBox
+    .p-company_infoBoxLabel ホームページ
+    .p-company_infoBoxValue = link_to '企業HP', @company.home_page
+  .p-company_infoBox--full
+    .p-company_infoBoxLabel 事業内容
+    .p-company_infoBoxValue.u-textLeft = @company.business_content
+
+  h2.title.p-company_h2 事業実績
+  .p-company_infoBox
+    .p-company_infoBoxLabel 直近売上
+    .p-company_infoBoxValue = @company.industry.name
+  .p-company_infoBox
+    .p-company_infoBoxLabel 純資産
+    .p-company_infoBoxValue = @company.establishment_date&.strftime('%Y年%-m月%-d日') || '-'
+  .p-company_infoBox
+    .p-company_infoBoxLabel １株あたり純利益
+    .p-company_infoBoxValue = @company.president_name
+  .p-company_infoBox
+    .p-company_infoBoxLabel １株あたり純資産
+    .p-company_infoBoxValue = link_to '企業HP', @company.home_page
 
   h2.title.p-company_h2 業績
   p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
@@ -80,20 +94,6 @@
           td.u-textCenter = sale.asset || '-'
           td.u-textCenter = sale.profit_per_stock || '-'
           td.u-textCenter = sale.asset_per_stock || '-'
-  /h2.title.p-company_h2 各種期間
-  /table.p-company_mainTable.u-mB30
-    tr
-      th.u-textLeft 抽選申込期間
-      td = @company.ipo_information.decorate.lottery_period
-    tr
-      th.u-textLeft 当選日
-      td = @company.ipo_information.winning_date.strftime('%m月%d日')
-    tr
-      th.u-textLeft 購入期間
-      td = @company.ipo_information.decorate.purchase_period
-    tr
-      th.u-textLeft 上場日
-      td = @company.ipo_information.listing_date.strftime('%m月%d日')
 
   .u-mT20
   h2.title.p-company_h2 株主構成
@@ -105,3 +105,11 @@
       tr
         td = shareholder.name
         td = "#{shareholder.rate} %"
+
+  h2.title.p-company_h2 監査法人と上場市場
+  .p-company_infoBox
+    .p-company_infoBoxLabel 監査法人
+    .p-company_infoBoxValue = @company.audit_corporations.pluck(:name).join(',')
+  .p-company_infoBox
+    .p-company_infoBoxLabel 上場市場
+    .p-company_infoBoxValue = @company.ipo_information.market.name
