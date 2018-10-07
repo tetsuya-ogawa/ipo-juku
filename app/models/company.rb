@@ -27,4 +27,9 @@ class Company < ApplicationRecord
   def sales_with(kind)
     company_sales.group_by { |sales| sales.kind }[kind.to_s]
   end
+
+  def has_linking?
+    # 連結の売り上げが一つでも存在すれば連結ありと判断
+    company_sales.group_by { |sales| sales.kind }['linking'].map(&:amount_of_sales).compact.present?
+  end
 end

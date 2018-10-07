@@ -21,6 +21,7 @@
     background-color: #f2fdff;
     display: inline-block;
     padding: 10px;
+    border: 2px solid white;
 
     .p-company_infoBoxLabel {
       margin-bottom: 3px;
@@ -64,6 +65,31 @@
           border-radius: 3px;
           font-size: 12px;
         }
+      }
+    }
+  }
+
+  .p-company_salesTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th {
+      padding: 8px 5px;
+    }
+
+    td {
+      padding: 15px 5px;
+    }
+
+    .p-company_salesTableHeader {
+      color: $white;
+      background-color: $main-color;
+    }
+
+    .p-company_salesTableRow {
+      &:nth-child(2n) {
+        background-color: #f2fdff;
       }
     }
   }
