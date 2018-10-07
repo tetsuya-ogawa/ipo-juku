@@ -7,15 +7,18 @@
   company-ipo-calender(ipo-information="#{@company.ipo_information.to_json}")
   h2.title.p-company_h2 価格情報
   table.p-company_mainTable.u-mB30
-    tr
-      th.u-textLeft 仮条件
-      td = @company.ipo_information.decorate.provisional_condition_period
-    tr
-      th.u-textLeft 公開価格
-      td = @company.ipo_information.public_offering_price || '未公開'
-    tr
-      th.u-textLeft 初値
-      td = @company.ipo_information.initial_price || '未公開'
+    .p-company_infoBox
+      .p-company_infoBoxLabel 仮条件
+      .p-company_infoBoxValue = @company.ipo_information.decorate.provisional_condition_period
+    .p-company_infoBox
+      .p-company_infoBoxLabel 最低購入株数
+      .p-company_infoBoxValue = @company.ipo_information.trading_unit
+    .p-company_infoBox
+      .p-company_infoBoxLabel 公開価格
+      .p-company_infoBoxValue = @company.ipo_information.public_offering_price || '未公開'
+    .p-company_infoBox
+      .p-company_infoBoxLabel 初値
+      .p-company_infoBoxValue = @company.ipo_information.initial_price || '未公開'
   h2.title.p-company_h2 株数情報
   table.p-company_mainTable.u-mB30
     tr
