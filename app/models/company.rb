@@ -23,4 +23,8 @@ class Company < ApplicationRecord
   def main_secretary
     secretaries.find_by(is_main?: true)&.securities_company
   end
+
+  def sales_with(kind)
+    company_sales.group_by { |sales| sales.kind }[kind.to_s]
+  end
 end

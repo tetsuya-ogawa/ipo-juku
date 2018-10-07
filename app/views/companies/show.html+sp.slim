@@ -52,7 +52,10 @@
     .p-company_infoBoxLabel 事業内容
     .p-company_infoBoxValue.u-textLeft = @company.business_content
 
-  h2.title.p-company_h2 事業実績
+  h2.title.p-company_h2 事業業績
+  p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
+  p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
+  h3 単体
   .p-company_infoBox
     .p-company_infoBoxLabel 直近売上
     .p-company_infoBoxValue = @company.industry.name
@@ -66,10 +69,20 @@
     .p-company_infoBoxLabel １株あたり純資産
     .p-company_infoBoxValue = link_to '企業HP', @company.home_page
 
-  h2.title.p-company_h2 業績
-  p ※ 売上高・経常利益・当期純利益・純資産額 単位: 千円
-  p ※ 1株あたりの純利益・1株あたりの純資産額 単位: 円
-  table.p-company_captionTable.u-mB30
+  table
+    tr
+      th 決算期
+      - @company.sales_with(:unit).group_by { |sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a }.each do |year|
+        th = year
+    - @company.decorate.sp_display_sales_columns.each do |k, v|
+      tr
+        td = v
+        - @company.sales_with(:unit).group_by { |sales| sales.period.strftime('%Y')}.keys.sort {|a, b| b <=> a }.each do |year|
+          td = @company.sales_with(:unit).select{|sale| sale.period.strftime('%Y') == year.to_s }[0].send(k)
+
+
+
+  /table.p-company_captionTable.u-mB30
     tr
       th
       th
