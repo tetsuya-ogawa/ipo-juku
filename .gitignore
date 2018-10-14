@@ -33,7 +33,8 @@ yarn-debug.log*
 .env
 
 # Ignore sitemap file
-public/sitemap.xml.gz
+public/sitemaps/sitemap.xml.gz
 
 # Ignore
-/vendor/bundle
+/vendor/bundle/
+/vendor/ruby/
