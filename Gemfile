@@ -20,6 +20,7 @@ gem 'draper'
 gem 'enum_help'
 gem 'kaminari'
 gem 'meta-tags'
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
