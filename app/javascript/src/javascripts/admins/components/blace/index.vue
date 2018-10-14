@@ -8,6 +8,7 @@
             mode="html"
             theme="monokai"
             :onChange="onChange"
+            :onLoad="onLoad"
             name="editor"
             :editorProps="{$blockScrolling: true, name: 'article[body]'}"
             :width="'100%'"
@@ -29,6 +30,7 @@
         data() {
             return {
               content: '',
+              editor: null,
             }
         },
         props: ['body', 'form_name'],
@@ -39,10 +41,12 @@
         methods: {
             onChange(newValue) {
               this.content = newValue
+            },
+            onLoad(editor) {
+                this.editor = editor
             }
         },
         mounted() {
-            console.log(this.body)
             this.content = this.body
         }
     }
