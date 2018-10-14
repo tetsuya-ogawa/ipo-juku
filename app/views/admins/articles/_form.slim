@@ -1,0 +1,13 @@
+= form_for [:admin, article] do |f|
+  .u-mB10
+    = f.label 'タイトル'
+  .u-mB20
+    = f.text_field :title, class: 'input'
+  .u-mB10
+    = f.label 'ディスクリプション'
+  .u-mB20
+    = f.text_area :description, class: 'textarea'
+  .u-mB20
+    editor(body="#{article.body}" form_name="article[body]")
+
+  = f.submit class: 'button'

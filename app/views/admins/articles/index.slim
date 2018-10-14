@@ -1,0 +1,12 @@
+table.table
+  thead
+    tr
+      th id
+      th 公開
+      th タイトル
+  tbody
+    - @articles.each do |article|
+      tr
+        td = article.id
+        td = article.is_published
+        td = link_to article.title, edit_admin_article_path(article)

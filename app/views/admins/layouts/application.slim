@@ -1,10 +1,11 @@
 doctype html
 html
   head
-    = javascript_pack_tag 'pc/application'
-    = stylesheet_pack_tag 'pc/application'
+    = javascript_pack_tag 'admins/application'
+    = stylesheet_pack_tag 'admins/application'
     = yield :javascript_head
   body
     header.header
-    main
-      = yield
+    .l-wrapper
+      main#app
+        = yield

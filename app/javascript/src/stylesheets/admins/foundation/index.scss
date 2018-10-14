@@ -1,0 +1,34 @@
+html, body {
+  position: relative;
+  height: 100%;
+  line-height: 1em;
+}
+
+:focus {
+  outline: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+// 後でどこかに切り出す
+$font-size-base: 14px;
+$font-size-h1: 30px;
+$font-size-h2: 24px;
+$font-size-h3: 20px;
+$font-size-h4: 16px;
+$font-size-button: 18px;
+$font-size-large: 15px;
+$font-size-x-large: 22px;
+$font-size-small: 13px;
+$font-size-x-small: 12px;
+$font-size-xx-small: 11px;
+$font-size-xxx-small: 10px;
