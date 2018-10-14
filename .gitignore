@@ -31,3 +31,10 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+
+# Ignore sitemap file
+public/sitemaps/sitemap.xml.gz
+
+ # Ignore
+/vendor/bundle/
+/vendor/ruby/
