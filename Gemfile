@@ -22,6 +22,7 @@ gem 'kaminari'
 gem 'meta-tags'
 gem 'carrierwave'
 gem 'fog'
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
