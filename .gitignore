@@ -27,10 +27,12 @@
 /config/master.key
 /public/packs
 /public/packs-test
+/public/uploads
 /node_modules
 yarn-debug.log*
 .yarn-integrity
 .env
+
 
 # Ignore sitemap file
 public/sitemaps/sitemap.xml.gz

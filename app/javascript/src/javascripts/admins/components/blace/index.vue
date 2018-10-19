@@ -1,5 +1,6 @@
 <template>
     <div>
+        <BlaceHeader :blace=editor />
         <AceEditor
             :fontSize="14"
             :showPrintMargin="true"
@@ -24,6 +25,7 @@
     import { Ace as AceEditor, Split as SplitEditor } from 'vue2-brace-editor';
     import 'brace/mode/html';
     import 'brace/theme/monokai';
+    import BlaceHeader from './blace_header.vue'
 
     export default {
         name: 'editor',
@@ -37,6 +39,7 @@
         components: {
             AceEditor,
             SplitEditor,
+            BlaceHeader,
         },
         methods: {
             onChange(newValue) {

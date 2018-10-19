@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     resources :crawlers, only: [:index, :create]
     resources :articles
   end
+
+  namespace :api, { format: :json } do
+    namespace :v1 do
+      resources :images, only: [:create]
+    end
+  end
 end
