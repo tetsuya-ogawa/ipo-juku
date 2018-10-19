@@ -23,6 +23,8 @@ gem 'meta-tags'
 gem 'carrierwave'
 gem 'fog'
 gem 'sitemap_generator'
+gem 'redcarpet'
+gem 'rouge'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
