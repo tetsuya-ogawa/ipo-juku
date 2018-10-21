@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="c-editor">
         <BlaceHeader :blace=editor />
         <AceEditor
             :fontSize="14"

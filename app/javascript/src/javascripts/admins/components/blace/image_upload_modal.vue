@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <input @change="uploadFile" type="file" name="image">
-    </div>
+    <label class="c-editor_imageUploadButton">
+      画像挿入
+      <input @change="uploadFile" type="file" name="image">
+    </label>
 </template>
 
 <script>

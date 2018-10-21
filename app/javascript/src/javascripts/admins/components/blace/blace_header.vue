@@ -1,5 +1,5 @@
 <template>
-    <div @click="onClick()">
+    <div class="c-editor_header" @click="onClick()">
         <ImageUploadModal :blace=blace />
     </div>
 </template>

@@ -1,0 +1,22 @@
+.c-editor {
+  .c-editor_header {
+    background-color: #272727;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .c-editor_imageUploadButton {
+    display: block;
+    cursor: pointer;
+    background-color: white;
+    padding: 6px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+
+    input {
+      display: none;
+    }
+  }
+}
