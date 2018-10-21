@@ -1,7 +1,7 @@
 FROM ruby:2.5.1
 
 RUN apt-get update &&\
-  apt-get install -y curl emacs-nox task-japanese locales emacs-nox less locales
+  apt-get install -y curl emacs-nox task-japanese locales emacs-nox less locales build-essential liblzma-dev patch ruby-dev zlib1g-dev
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN cd /tmp &&\
