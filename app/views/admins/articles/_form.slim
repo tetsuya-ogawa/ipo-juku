@@ -1,13 +1,35 @@
 = form_for [:admin, article] do |f|
   .u-mB10
-    = f.label 'タイトル'
+    = f.label 'タイトル', class: 'u-bold'
   .u-mB20
     = f.text_field :title, class: 'input'
   .u-mB10
-    = f.label 'ディスクリプション'
+    = f.label 'ディスクリプション', class: 'u-bold'
   .u-mB20
     = f.text_area :description, class: 'textarea'
+  .columns
+    .u-mB20.column.is-6
+      p.u-mB10.u-bold メインイメージ
+      = image_tag f.object.main_image.url || '', style: 'height: 200px'
+      - if f.object.main_image.url.present?
+        p
+          label.checkbox
+            = f.check_box :remove_main_image
+            | 画像の削除
+      .mb-3
+        = f.file_field :main_image
+    .u-mB20.column.is-6
+      p.u-mB10.u-bold サムネイル
+      = image_tag f.object.thumbnail.url || '', style: 'height: 200px'
+      - if f.object.thumbnail.url.present?
+        p
+          label.checkbox
+            = f.check_box :remove_thumbnail
+            | 画像の削除
+      .mb-3
+        = f.file_field :thumbnail
   .u-mB20
+    p.u-mB10.u-bold 本文
     editor(body="#{article.body}" form_name="article[body]")
 
-  = f.submit class: 'button'
+  = f.submit class: 'button is-primary', style: 'position:fixed;right:130px;bottom:30px;z-index:99;'
