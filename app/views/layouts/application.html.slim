@@ -3,12 +3,12 @@ html
   head
     = render 'shared/meta_tag'
     = yield :head
-    = render 'shared/gtm_script' if Rails.env.production?
+    = render 'shared/gtm_script' if Rails.env.production? && request.path.include?('admin')
     = javascript_pack_tag 'pc/application'
     = stylesheet_pack_tag 'pc/application'
     = yield :javascript_head
   body class="#{controller_path.sub(/\//, '_') + '-' + controller.action_name}"
-    = render 'shared/gtm_noscript' if Rails.env.production?
+    = render 'shared/gtm_noscript' if Rails.env.production? && request.path.include?('admin')
     = render 'shared/header'
     .l-wrapper
       main#app.l-main data-namespace="#{(controller_path.sub(/\//, '_') + '_' + controller.action_name).camelize}"
