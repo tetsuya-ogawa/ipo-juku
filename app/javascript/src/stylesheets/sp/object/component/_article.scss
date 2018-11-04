@@ -1,0 +1,25 @@
+.c-article {
+  h1 {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  h2 {
+
+    margin-bottom: -10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid $main-color;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  a {
+    color: $main-color;
+  }
+
+  img {
+    width: 100%;
+  }
+}

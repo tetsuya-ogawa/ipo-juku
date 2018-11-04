@@ -6,6 +6,7 @@ class Admins::ArticlesController < Admins::BaseController
   end
 
   def show
+    render layout: 'application'
     @article = Article.find(params[:id])
   end
 

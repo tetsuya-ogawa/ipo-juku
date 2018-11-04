@@ -1,5 +1,4 @@
-h1.title.is-1 記事編集
-
+.u-flex.u-justifyContentBetween.u-alignItemsCenter
+  h1.title.is-1 記事編集
+  = link_to '詳細', admin_article_path(@article)
 = render 'admins/articles/form', article: @article
-
-/= markdown(@article.body)
