@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
   }
 
-  # config.cache_storage = :fog
+  config.cache_storage = :fog
   # config.fog_credentials = {
   #     provider: 'AWS',
   #     aws_access_key_id: '',
@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
   # config.fog_public = true
   config.storage = Rails.env.development? ? :file : :fog
   # config.remove_previously_stored_files_after_update = false
-  bucket_name = Settings.s3.bucket || 'prod-ipo-juku'
+  bucket_name = 'prod-ipo-juku'
   config.fog_directory = bucket_name
   config.asset_host = if Rails.env.development? || Rails.env.test?
                         uri = URI.parse 'https://ipo-juku.com'
